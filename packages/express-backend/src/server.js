@@ -62,9 +62,22 @@ app.get('/items/:id', (req, res) => {
 app.post('/items', (req, res) => {
     const createdItem = itemHandler.createItem(req.body)
 
-    const statusCode = createdItem === undefined ? 400 : 204
+    if (createdItem === undefined) {
+        res.status(400).send()
+        return
+    }
 
-    res.status(statusCode).send(createdItem || {})
+    const user = userHandler.getUserById(createdItem.userId)
+
+    if (user === undefined) {
+        res.status(404).send()
+        console.error(`userId ${createdItem.userId} not found`)
+        return
+    }
+
+    user.items.push(createdItem.id)
+
+    res.status(201).send(createdItem || {})
 })
 
 app.get('/users/:userId/items', (req, res) => {
