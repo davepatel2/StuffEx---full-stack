@@ -23,6 +23,12 @@ const users = [
         username: 'russ',
         phone: '1235552930',
         items: []
+    },
+    {
+        id: '11',
+        username: 'joshua.smith',
+        email: 'joshua@example.com',
+        items: ['3141']
     }
 ]
 

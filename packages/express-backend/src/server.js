@@ -4,6 +4,8 @@ import express from 'express'
 import ItemHandler from './handler/item-handler.js'
 import UserHandler from './handler/user-handler.js'
 
+import { applyKeywordItemSearch } from './handler/search-filter.js'
+
 
 const app = express()
 app.use(cors())
@@ -47,7 +49,15 @@ app.delete('/users/:id', (req, res) => {
 })
 
 app.get('/items', (req, res) => {
-    res.status(200).send(itemHandler.getItems())
+    const items = itemHandler.getItems()
+
+    const query = req.query.q
+    if (query !== undefined) {
+        const filteredItems = applyKeywordItemSearch(query, items)
+        res.status(200).send(filteredItems)
+    } else {
+        res.status(200).send(items)
+    }
 })
 
 app.get('/items/:id', (req, res) => {

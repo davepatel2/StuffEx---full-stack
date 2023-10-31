@@ -32,9 +32,16 @@ const items = [
     {
         id: '9013',
         title: 'buccaneers game ball',
-        description: 'a buccaneers game ball. fully inflated.',
+        description: 'a buccaneers game ball. fully inflated. from brady\'s 7th super bowl victory',
         images: ['https://www.si.com/.image/t_share/MTk5Nzk4Nzk1NjI4NzE3Njk2/nflfootball.jpg'],
         userId: '12'
+    },
+    {
+        id: '3141',
+        title: 'assorted party balloons (72-pack)',
+        description: '72-pack of inflatable party balloons',
+        images: ['https://example.com/balloons.png'],
+        userId: '11'
     }
 ]
 
