@@ -2,8 +2,8 @@
 
 import Item from "./Item";
 import React, {useState} from 'react';
-import Form from './Form';
-import Logo from './images/logo.png';
+import Form from './components/Form';
+import Navbar from "./components/Navbar";
 
 function MyApp() {
   const [items, setItems] = useState([
@@ -23,11 +23,12 @@ function MyApp() {
     setItems([...items, listing]);
   }
   return (
-    <div className="container" style={{margin: 60}}>
-      <img src={Logo} alt="Logo" style={{height:60}}/>
-      <h1>StuffEX</h1>
+    <div>
+      <Navbar />
+      <div className="container" style={{margin: 60}}>
       <Item itemData={items} />
       <Form handleSubmit={updateList} />
+      </div>
     </div>
   );
 }
