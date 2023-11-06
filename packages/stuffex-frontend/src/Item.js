@@ -1,66 +1,55 @@
 // src/MyApp.js
 import React from "react";
 
-
 function ItemHeader() {
   return (
-    <thead>
-      <tr>
-        <th>Available Items</th>
-        
-      </tr>
-    </thead>
+    <div style={{ textAlign: 'center', fontSize: '24px', padding: '20px 0' }}>
+      Recently Posted
+    </div>
   );
 }
 
 function ItemBody(props) {
-  //this is the border around the item listing
-  const listingStyle = {
-    border: '1px solid #ccc',
-    padding: '10px',
-    
-    display: 'inline-block', 
+  const gridContainerStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)', 
+    gap: '10px', 
+    padding: '10px', 
   };
 
-  const rows = props.itemData.map((row, index) => {
-    return (
-      //displays the variables of the item
-      <table style={listingStyle}>
-      <><tr key={index}>
-        <td>{row.title}</td></tr><tr> <td>{<img src={row.image} alt= {""}/>}</td></tr><tr> <td>{row.description}</td>
-        </tr></>
-        </table>);
-        
-   }
-  );
-  return (
-    
-      <tbody>
-        {rows}
-       </tbody>
-      
-   );
-}
+  const itemStyle = {
+    border: '1px solid #ccc',
+    padding: '10px',
+    display: 'flex',
+    flexDirection: 'column', 
+    justifyContent: 'space-between', 
+  };
 
-  // return (
-  //   <div className="item-listing" style={listingStyle}>
-  //     <div className="item-image">
-  //       {/* <img src={image} alt={title} /> */}
-  //     </div>
-  //     <div className="item-details">
-  //       <h2>{props.itemName}</h2>
-  //       <p>{props.userName}</p>
-  //     </div>
-  //   </div>
-  // );
-// }
+  const imageStyle = {
+    width: '100%', 
+    height: '200px', 
+    objectFit: 'contain', 
+  };
+
+  const rows = props.itemData.map((item, index) => {
+    return (
+      <div style={itemStyle} key={index}>
+        <div>{item.title}</div>
+        <img src={item.image} alt="" style={imageStyle} />
+        <div>{item.description}</div>
+      </div>
+    );
+  });
+
+  return <div style={gridContainerStyle}>{rows}</div>;
+}
 
 function Item(props) {
   return (
-    <table>
+    <div>
       <ItemHeader />
       <ItemBody itemData={props.itemData} />
-    </table>
+    </div>
   );
 }
 
