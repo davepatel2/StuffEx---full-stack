@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "/Users/srirocks2020/csc307-stuffex/packages/stuffex-frontend/src/images/logo.png";
+import Logo from '../images/logo.png';
 
 const Navbar = () => {
   const navbarStyle = {
