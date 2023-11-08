@@ -1,5 +1,5 @@
 // src/Form.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Form(props) {
   const [item, setItem] = useState({
@@ -10,14 +10,14 @@ function Form(props) {
 
   function submitForm() {
     props.handleSubmit(item);
-    setItem({ title: '', image: '', description: '' });
+    setItem({ title: "", image: "", description: "" });
   }
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setItem(prevState => ({
+    setItem((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   }
 
@@ -26,9 +26,9 @@ function Form(props) {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setItem(prevState => ({
+        setItem((prevState) => ({
           ...prevState,
-          image: reader.result
+          image: reader.result,
         }));
       };
       reader.readAsDataURL(file);
@@ -46,12 +46,7 @@ function Form(props) {
         onChange={handleChange}
       />
       <label htmlFor="image">Image Upload</label>
-      <input
-        type="file"
-        name="image"
-        id="image"
-        onChange={handleImageChange}
-      />
+      <input type="file" name="image" id="image" onChange={handleImageChange} />
       <label htmlFor="description">Description</label>
       <input
         type="text"

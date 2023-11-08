@@ -3,7 +3,7 @@ import React from "react";
 
 function ItemHeader() {
   return (
-    <div style={{ textAlign: 'center', fontSize: '24px', padding: '20px 0' }}>
+    <div style={{ textAlign: "center", fontSize: "24px", padding: "20px 0" }}>
       Recently Posted
     </div>
   );
@@ -11,24 +11,24 @@ function ItemHeader() {
 
 function ItemBody(props) {
   const gridContainerStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)', 
-    gap: '10px', 
-    padding: '10px', 
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "10px",
+    padding: "10px",
   };
 
   const itemStyle = {
-    border: '1px solid #ccc',
-    padding: '10px',
-    display: 'flex',
-    flexDirection: 'column', 
-    justifyContent: 'space-between', 
+    border: "1px solid #ccc",
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   };
 
   const imageStyle = {
-    width: '100%', 
-    height: '200px', 
-    objectFit: 'contain', 
+    width: "100%",
+    height: "200px",
+    objectFit: "contain",
   };
 
   const rows = props.itemData.map((item, index) => {
