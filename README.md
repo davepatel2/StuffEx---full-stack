@@ -1,3 +1,3 @@
 # csc307-stuffex
 
-#contributing
+# contributing
