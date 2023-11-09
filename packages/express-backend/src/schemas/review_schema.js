@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const reviewSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -6,17 +6,17 @@ const reviewSchema = new mongoose.Schema({
   rating: { type: Number, required: true },
   reviewer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   reviewee: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   id: { type: mongoose.Schema.Types.ObjectId, required: true, auto: true },
-});
+})
 
-const Review = mongoose.model("Review", reviewSchema);
+const Review = mongoose.model('Review', reviewSchema)
 
-export default Review;
+export default Review

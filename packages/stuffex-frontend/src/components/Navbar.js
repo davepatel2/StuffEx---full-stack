@@ -1,19 +1,19 @@
-import React from "react";
-import Logo from "../images/logo.png";
+import React from 'react'
+import Logo from '../images/logo.png'
 
 const Navbar = () => {
   const navbarStyle = {
-    borderBottom: "2px solid #149562",
-  };
+    borderBottom: '2px solid #149562',
+  }
 
   const navbarContentStyle = {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "10px 20px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  };
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '10px 20px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }
 
   return (
     <nav style={navbarStyle}>
@@ -25,7 +25,7 @@ const Navbar = () => {
         <a href="/Form">List an Item</a>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

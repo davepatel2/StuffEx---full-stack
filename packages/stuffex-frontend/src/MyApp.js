@@ -1,26 +1,26 @@
 // src/MyApp.js
 
-import Item from "./Item";
-import React, { useState } from "react";
-import Form from "./components/Form";
-import Navbar from "./components/Navbar";
+import Item from './Item'
+import React, { useState } from 'react'
+import Form from './components/Form'
+import Navbar from './components/Navbar'
 
 function MyApp() {
   const [items, setItems] = useState([
     {
-      title: "Apple",
-      image: "example.jpg",
-      description: "hello",
+      title: 'Apple',
+      image: 'example.jpg',
+      description: 'hello',
     },
     {
-      title: "ball",
-      image: "ball.jpg",
-      description: "Hi im a ball",
+      title: 'ball',
+      image: 'ball.jpg',
+      description: 'Hi im a ball',
     },
-  ]);
+  ])
 
   function updateList(listing) {
-    setItems([...items, listing]);
+    setItems([...items, listing])
   }
   return (
     <div>
@@ -30,7 +30,7 @@ function MyApp() {
         <Form handleSubmit={updateList} />
       </div>
     </div>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

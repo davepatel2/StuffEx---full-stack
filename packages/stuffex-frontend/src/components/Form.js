@@ -1,37 +1,37 @@
 // src/Form.js
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 function Form(props) {
   const [item, setItem] = useState({
-    title: "",
-    image: "",
-    description: "",
-  });
+    title: '',
+    image: '',
+    description: '',
+  })
 
   function submitForm() {
-    props.handleSubmit(item);
-    setItem({ title: "", image: "", description: "" });
+    props.handleSubmit(item)
+    setItem({ title: '', image: '', description: '' })
   }
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setItem((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
+    }))
   }
 
   function handleImageChange(event) {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onloadend = () => {
         setItem((prevState) => ({
           ...prevState,
           image: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
+        }))
+      }
+      reader.readAsDataURL(file)
     }
   }
 
@@ -57,7 +57,7 @@ function Form(props) {
       />
       <input type="button" value="Submit" onClick={submitForm} />
     </form>
-  );
+  )
 }
 
-export default Form;
+export default Form
