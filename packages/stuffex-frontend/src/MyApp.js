@@ -52,12 +52,12 @@ function postItem(item) {
   return (
     <div>
       <Navbar />
-      <div className="container" style={{margin: 60}}>
-      <Item itemData={items} />
-      <Form handleSubmit={updateList} />
+      <div className="container" style={{ margin: 60 }}>
+        <Item itemData={items} />
+        <Form handleSubmit={updateList} />
       </div>
     </div>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
