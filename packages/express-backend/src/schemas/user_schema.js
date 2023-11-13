@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
   items_bought: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
   reviews_written: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
   reviews_received: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
-  id: { type: mongoose.Schema.Types.ObjectId, required: true, auto: true },
 })
 
 const User = mongoose.model('User', userSchema)

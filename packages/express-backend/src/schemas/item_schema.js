@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const itemSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -10,7 +10,6 @@ const itemSchema = new mongoose.Schema({
     required: true,
   },
   buyer_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // optional reference to User
-  id: { type: mongoose.Schema.Types.ObjectId, required: true, auto: true },
 })
 
 const Item = mongoose.model('Item', itemSchema)

@@ -1,3 +1,5 @@
+import Database from '../persistence/mongoose-connection.js'
+
 const users = [
   {
     id: '18',
@@ -55,41 +57,18 @@ class UserHandler {
   constructor() {}
 
   /** Return a list of all users. */
-  getUsers() {
-    return users
+  async getUsers() {
+    return await Database.getUsers()
   }
 
   /** Get a user that matches the given id. */
-  getUserById(userId) {
-    const user = users.find((user) => user.id === userId)
-    return user
+  async getUserById(userId) {
+    return await Database.findUserById(userId)
   }
 
-  /**
-   * Add a user object to the data. Each user object must have the
-   * following fields:
-   * username: string representing a username
-   * email: optional string representing an email address
-   * phone: optional string representing a phone number
-   * items: optional array representing id's of items owned by the user
-   *
-   * Returns the object of the created user on success. Returns undefined on
-   * failure.
-   */
-  createUser(user) {
-    if (
-      Object.keys(user).includes('id') ||
-      !Object.keys(user).includes('username') ||
-      !usernameIsUnique(user.username)
-    ) {
-      return undefined
-    }
-
-    user.id = userIdGenerator()
-
-    users.push(user)
-
-    return user
+  /** Create a user. */
+  async createUser(user) {
+    return await Database.createUser(user)
   }
 
   /**
