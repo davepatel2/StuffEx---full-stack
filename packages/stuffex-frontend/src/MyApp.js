@@ -22,11 +22,11 @@ function MyApp() {
   }, [])
 
   function fetchUsers() {
-    const promise = fetch('http://localhost:8000/items')
+    const promise = fetch('stuffex.azurewebsites.net/items')
     return promise
   }
   function postItem(item) {
-    const promise = fetch('Http://localhost:8000/items', {
+    const promise = fetch('stuffex.azurewebsites.net/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

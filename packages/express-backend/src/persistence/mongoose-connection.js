@@ -1,26 +1,17 @@
-import mongoose, { mongo } from 'mongoose'
-
+import mongoose from 'mongoose'
 import Item from '../schemas/item_schema.js'
 import User from '../schemas/user_schema.js'
 
-const cluster = process.env['STUFFEX_CLUSTER']
-const username = process.env['STUFFEX_USERNAME']
-const password = process.env['STUFFEX_PASSWORD']
-const database = process.env['STUFFEX_DATABASE']
+const mongoDBUri = process.env.MONGODB_URI
 
-if (
-  cluster === undefined ||
-  username === undefined ||
-  password === undefined ||
-  database === undefined
-) {
-  throw new Error('Missing database credentials')
+if (!mongoDBUri) {
+  throw new Error('MongoDB connection URI is missing')
 }
 
 mongoose.set('debug', true)
 
 mongoose
-  .connect(`mongodb+srv://${username}:${password}@${cluster}/${database}`, {
+  .connect(mongoDBUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
