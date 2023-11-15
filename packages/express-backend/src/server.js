@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 import bodyParser from 'body-parser'
+import userHandler from './handler/user-handler.js'
 
 import Database from '../src/persistence/mongoose-connection.js'
 
@@ -94,6 +95,6 @@ app.get('/users/:userId/items', async (req, res) => {
   res.status(statusCode).send(items || [])
 })
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`)
+app.listen(process.env.PORT || port, () => {
+  console.log('REST API is listening.')
 })
