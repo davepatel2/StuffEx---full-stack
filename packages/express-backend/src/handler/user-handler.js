@@ -35,19 +35,18 @@ const users = [
 ]
 
 /** Return true if the username is taken, false otherwise. */
-const usernameIsUnique = (username) => {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].username === username) return false
-  }
-
-  return true
-}
+// const usernameIsUnique = (username) => {
+//   for (let i = 0; i < users.length; i++) {
+//     if (users[i].username === username) return false
+//   }
+//   return true
+// }
 
 /** Return a random hex string */
-const randomHexString = () => Math.round(Math.random() * (1 << 16)).toString(16)
+// const randomHexString = () => Math.round(Math.random() * (1 << 16)).toString(16)
 
 /** Return a user id string */
-const userIdGenerator = () => `${randomHexString()}-${randomHexString()}`
+// const userIdGenerator = () => `${randomHexString()}-${randomHexString()}`
 
 /**
  * This is the main handler. At the moment, it uses a JavaScript object to
