@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "format": "prettier --write ."
   },
   "author": "",
