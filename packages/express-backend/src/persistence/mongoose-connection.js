@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 
 import Item from '../schemas/item_schema.js'
 import User from '../schemas/user_schema.js'
