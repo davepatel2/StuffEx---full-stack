@@ -1,10 +1,11 @@
 // src/MyApp.js
 
-import Item from './Item'
-
-import React, { useState, useEffect } from 'react'
-import Form from './components/Form'
-import Navbar from './components/Navbar'
+import Item from './Item';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes } from "react-router-dom";
+import Form from './components/Form';
+import Navbar from './components/Navbar';
+import About from './components/About'
 
 function MyApp() {
   const [items, setItems] = useState([])
@@ -56,8 +57,13 @@ function MyApp() {
     <div>
       <Navbar />
       <div className="container" style={{ margin: 60 }}>
-        <Item itemData={items} />
-        <Form handleSubmit={updateList} />
+        <Routes>
+          <Route path="/" element={<Item itemData={items} />} />
+          <Route path="/Form" element={<Form handleSubmit={updateList} />} />
+          <Route path="/About" element={<About />} />
+        </Routes>
+        {/* <Item itemData={items} />
+        <Form handleSubmit={updateList} /> */}
       </div>
     </div>
   )

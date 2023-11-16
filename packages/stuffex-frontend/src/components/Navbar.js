@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../images/logo.png'
-
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   const navbarStyle = {
     borderBottom: '2px solid #149562',
@@ -18,11 +18,11 @@ const Navbar = () => {
   return (
     <nav style={navbarStyle}>
       <div style={navbarContentStyle}>
-        <a href="/">
+        <Link to="/">
           <img src={Logo} alt="Logo" style={{ height: 60 }} />
-        </a>
-        <a href="/about">About</a>
-        <a href="/Form">List an Item</a>
+        </Link>
+        <Link to="/About">About</Link>
+        <Link to="/Form">List an Item</Link>
       </div>
     </nav>
   )
