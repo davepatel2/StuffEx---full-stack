@@ -26,7 +26,7 @@ function MyApp() {
     return promise
   }
   function postItem(item) {
-    const promise = fetch('https://stuffex.azurewebsites.net/items', {
+    const promise = fetch('https://stuffex.azurewebsites.net/users/6551b42036f9e0bfd4503186/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
