@@ -25,15 +25,15 @@ function ItemBody(props) {
     flexDirection: 'column',
     justifyContent: 'space-between',
     boxShadow: '0px 2px 4px rgba(0, 128, 0, 0.2)',
-    minHeight: '300px', 
+    minHeight: '300px',
   }
 
   const imageStyle = {
     width: '100%',
     height: '200px',
     objectFit: 'contain',
-    border: '1px solid green', 
-    borderRadius: '5px', 
+    border: '1px solid green',
+    borderRadius: '5px',
   }
 
   const textStyle = {
@@ -132,9 +132,28 @@ function ItemBody(props) {
   return <div style={gridContainerStyle}>{rows}</div>
 }
 
+function SearchBar(props) {
+  let searchValue = ''
+
+  function superSearch() {
+    props.updateItems(searchValue)
+  }
+
+  return (
+    <div>
+      <input
+        type="text"
+        onChange={(e) => (searchValue = e.currentTarget.value)}
+      />
+      <button onClick={superSearch}>Search</button>
+    </div>
+  )
+}
+
 function Item(props) {
   return (
     <div>
+      <SearchBar updateItems={props.updateItems} />
       <ItemHeader />
       <ItemBody itemData={props.itemData} />
     </div>

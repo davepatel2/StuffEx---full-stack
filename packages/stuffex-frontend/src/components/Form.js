@@ -1,51 +1,51 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react'
 
 function Form(props) {
   const [item, setItem] = useState({
     title: '',
     images: [],
     description: '',
-  });
+  })
 
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null)
 
   function submitForm() {
-    props.handleSubmit(item);
-    setItem({ title: '', images: [], description: '' });
+    props.handleSubmit(item)
+    setItem({ title: '', images: [], description: '' })
 
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = ''
     }
   }
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setItem((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
+    }))
   }
 
   function handleImageChange(event) {
-    const files = Array.from(event.target.files);
+    const files = Array.from(event.target.files)
 
     files.forEach((file) => {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onloadend = () => {
         setItem((prevState) => ({
           ...prevState,
           images: [...prevState.images, reader.result],
-        }));
-      };
-      reader.readAsDataURL(file);
-    });
+        }))
+      }
+      reader.readAsDataURL(file)
+    })
   }
 
   function handleDeleteImage(indexToDelete) {
     setItem((prevState) => ({
       ...prevState,
       images: prevState.images.filter((_, index) => index !== indexToDelete),
-    }));
+    }))
   }
 
   return (
@@ -111,7 +111,7 @@ function Form(props) {
 
       <input type="button" value="Submit" onClick={submitForm} />
     </form>
-  );
+  )
 }
 
-export default Form;
+export default Form

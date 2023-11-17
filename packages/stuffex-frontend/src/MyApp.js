@@ -10,8 +10,8 @@ import About from './components/About'
 function MyApp() {
   const [items, setItems] = useState([])
 
-  useEffect(() => {
-    fetchUsers()
+  function populateItems(query) {
+    fetchUsers(query)
       .then((res) => res.json())
       .then((json) => {
         console.log(json)
@@ -20,12 +20,17 @@ function MyApp() {
       .catch((error) => {
         console.log(error)
       })
-  }, [])
+  }
 
-  function fetchUsers() {
-    const promise = fetch('https://stuffex.azurewebsites.net/items')
+  useEffect(populateItems, [])
+
+  function fetchUsers(query) {
+    const promise = fetch(
+      `https://stuffex.azurewebsites.net/items${query ? '?q=' + query : ''}`
+    )
     return promise
   }
+
   function postItem(item) {
     const promise = fetch(
       'https://stuffex.azurewebsites.net/users/6551b42036f9e0bfd4503186/items',
@@ -58,7 +63,10 @@ function MyApp() {
       <Navbar />
       <div className="container" style={{ margin: 60 }}>
         <Routes>
-          <Route path="/" element={<Item itemData={items} />} />
+          <Route
+            path="/"
+            element={<Item itemData={items} updateItems={populateItems} />}
+          />
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
         </Routes>
