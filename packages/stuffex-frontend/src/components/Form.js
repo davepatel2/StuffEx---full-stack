@@ -1,16 +1,21 @@
-// src/Form.js
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 function Form(props) {
   const [item, setItem] = useState({
     title: '',
-    image: '',
+    images: [],
     description: '',
   })
 
+  const fileInputRef = useRef(null)
+
   function submitForm() {
     props.handleSubmit(item)
-    setItem({ title: '', image: '', description: '' })
+    setItem({ title: '', images: [], description: '' })
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   function handleChange(event) {
@@ -22,17 +27,25 @@ function Form(props) {
   }
 
   function handleImageChange(event) {
-    const file = event.target.files[0]
-    if (file) {
+    const files = Array.from(event.target.files)
+
+    files.forEach((file) => {
       const reader = new FileReader()
       reader.onloadend = () => {
         setItem((prevState) => ({
           ...prevState,
-          image: reader.result,
+          images: [...prevState.images, reader.result],
         }))
       }
       reader.readAsDataURL(file)
-    }
+    })
+  }
+
+  function handleDeleteImage(indexToDelete) {
+    setItem((prevState) => ({
+      ...prevState,
+      images: prevState.images.filter((_, index) => index !== indexToDelete),
+    }))
   }
 
   return (
@@ -45,8 +58,33 @@ function Form(props) {
         value={item.title}
         onChange={handleChange}
       />
-      <label htmlFor="image">Image Upload</label>
-      <input type="file" name="image" id="image" onChange={handleImageChange} />
+
+      <label htmlFor="images">Image Upload</label>
+      <input
+        type="file"
+        name="images"
+        id="images"
+        ref={fileInputRef}
+        onChange={handleImageChange}
+        multiple
+      />
+
+      {/* Displaying uploaded images */}
+      <div>
+        {item.images.map((imageSrc, index) => (
+          <div key={index}>
+            <img
+              src={imageSrc}
+              alt={`uploaded-${index}`}
+              style={{ width: '100px', height: '100px' }}
+            />
+            <button type="button" onClick={() => handleDeleteImage(index)}>
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
+
       <label htmlFor="description">Description</label>
       <input
         type="text"
@@ -55,6 +93,7 @@ function Form(props) {
         value={item.description}
         onChange={handleChange}
       />
+
       <input type="button" value="Submit" onClick={submitForm} />
     </form>
   )
