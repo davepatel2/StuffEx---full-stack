@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 import Item from '../schemas/item_schema.js'
 import User from '../schemas/user_schema.js'
-import dotenv from 'dotenv'
-dotenv.config()
 
 const mongoDBUri = process.env.MONGODB_URI
 
