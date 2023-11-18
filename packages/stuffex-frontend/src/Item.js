@@ -133,19 +133,24 @@ function ItemBody(props) {
 }
 
 function SearchBar(props) {
-  let searchValue = ''
+  const divStyle = {
+    textAlign: 'center',
+  }
 
-  function superSearch() {
-    props.updateItems(searchValue)
+  const inputStyle = {
+    borderRadius: '10px',
+    fontSize: '3em',
+    padding: '0.25em 1em',
   }
 
   return (
-    <div>
+    <div style={divStyle}>
       <input
+        style={inputStyle}
+        placeholder="Search for anything..."
         type="text"
-        onChange={(e) => (searchValue = e.currentTarget.value)}
+        onChange={(e) => props.updateItems(e.currentTarget.value)}
       />
-      <button onClick={superSearch}>Search</button>
     </div>
   )
 }
