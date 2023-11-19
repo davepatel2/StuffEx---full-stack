@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import noImage from './images/no_image.png'
 
 function ItemHeader() {
@@ -133,24 +133,38 @@ function ItemBody(props) {
 }
 
 function SearchBar(props) {
+  const searchBarInput = useRef(null)
+
+  const handleSearch = () => props.updateItems(searchBarInput.current.value)
+
+  const inputHeight = '48px'
+
   const divStyle = {
-    textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 
   const inputStyle = {
-    borderRadius: '10px',
-    fontSize: '3em',
-    padding: '0.25em 1em',
+    height: inputHeight,
+    fontSize: '2em',
+  }
+
+  const buttonStyle = {
+    height: inputHeight,
   }
 
   return (
     <div style={divStyle}>
       <input
         style={inputStyle}
-        placeholder="Search for anything..."
         type="text"
-        onChange={(e) => props.updateItems(e.currentTarget.value)}
+        ref={searchBarInput}
+        placeholder="Search for anything..."
       />
+      <button onClick={handleSearch} style={buttonStyle}>
+        Search
+      </button>
     </div>
   )
 }
