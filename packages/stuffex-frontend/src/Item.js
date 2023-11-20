@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
+
 import noImage from './images/no_image.png'
 
 function ItemHeader() {
@@ -96,9 +98,13 @@ function ItemBody(props) {
 
     const showNavigationButtons = item.images.length > 1
 
+    const itemUrl = `/item/${item._id}`
+
     return (
       <div style={itemStyle} key={itemIndex}>
-        <div style={{ ...textStyle, maxHeight: '30px' }}>{item.title}</div>
+        <Link to={itemUrl}>
+          <div style={{ ...textStyle, maxHeight: '30px' }}>{item.title}</div>
+        </Link>
         <div style={lineStyle} /> {/* Always show the top line */}
         <div style={{ textAlign: 'center' }}>
           <div style={buttonContainerStyle}>

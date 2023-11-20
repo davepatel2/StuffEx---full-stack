@@ -6,9 +6,12 @@ import { Route, Routes } from 'react-router-dom'
 import Form from './components/Form'
 import Navbar from './components/Navbar'
 import About from './components/About'
+import ItemPage from './ItemPage'
 
 function MyApp() {
   const [items, setItems] = useState([])
+
+  const backendRoot = 'https://stuffex.azurewebsites.net'
 
   function populateItems(query) {
     fetchUsers(query)
@@ -25,15 +28,13 @@ function MyApp() {
   useEffect(populateItems, [])
 
   function fetchUsers(query) {
-    const promise = fetch(
-      `https://stuffex.azurewebsites.net/items${query ? '?q=' + query : ''}`
-    )
+    const promise = fetch(`${backendRoot}/items${query ? '?q=' + query : ''}`)
     return promise
   }
 
   function postItem(item) {
     const promise = fetch(
-      'https://stuffex.azurewebsites.net/users/6551b42036f9e0bfd4503186/items',
+      `${backendRoot}/users/6551b42036f9e0bfd4503186/items`,
       {
         method: 'POST',
         headers: {
@@ -54,10 +55,6 @@ function MyApp() {
       })
   }
 
-  // function updateList(listing) {
-  //   setItems([...items, listing]);
-  // }
-
   return (
     <div>
       <Navbar />
@@ -69,6 +66,10 @@ function MyApp() {
           />
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
+          <Route
+            path="/item/:itemId"
+            element={<ItemPage backendRoot={backendRoot} />}
+          />
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}
