@@ -149,6 +149,25 @@ async function addToWishList(userId, itemId) {
   }
 }
 
+async function removeFromWishList(userId, itemId) {
+  try {
+    const item = await findItemById(itemId)
+    const user = await findUserById(userId)
+
+    if (item === undefined || user === undefined) {
+      throw new Error('Item or User not found')
+    }
+
+    user.wishlist = user.wishlist.filter((itemId) => {
+      return !item._id.equals(itemId)
+    })
+
+    user.save()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export default {
   getItems,
   getUsers,
@@ -161,4 +180,5 @@ export default {
   findItemsByUserId,
   getWishlist,
   addToWishList,
+  removeFromWishList,
 }

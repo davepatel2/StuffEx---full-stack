@@ -26,6 +26,10 @@ Gets a specific user's wishlist. The `userId` path variable is the user id for t
 
 Adds a specific item to a specific user's wishlist. The `userId` path variable is the user id for the user's whose wishlist you would like to change, and the `itemId` path variable is the id for the item you would like to add.
 
+### DELETE `/users/:userId/wishlist/:itemId`
+
+Removes a specific item from a specific user's wishlist.
+
 ### GET `/items`
 
 Returns a list of all items in the database. Particularly useful in populating the main page. If you want to run a keyword search, pass the url parameter `q` set to a string. For example, a keyword search on `spicy peppers` would look like `/items?q=spicy peppers`.

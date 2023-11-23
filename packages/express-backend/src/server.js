@@ -95,6 +95,15 @@ app.put('/users/:userId/wishlist/:itemId', async (req, res) => {
   res.status(statusCode).send(editedWishlist)
 })
 
+app.delete('/users/:userId/wishlist/:itemId', async (req, res) => {
+  const userId = req.params.userId
+  const itemId = req.params.itemId
+
+  await Database.removeFromWishList(userId, itemId)
+
+  res.status(204).send()
+})
+
 app.post('/users/:userId/items', async (req, res) => {
   const userId = req.params.userId
   const createdItem = await Database.createItem(req.body, userId)
