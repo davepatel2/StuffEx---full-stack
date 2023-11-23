@@ -115,6 +115,40 @@ async function findItemsByUserId(userId) {
   }
 }
 
+async function getWishlist(userId) {
+  try {
+    const user = await findUserById(userId)
+    await user.populate('wishlist')
+    return user.wishlist
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
+async function addToWishList(userId, itemId) {
+  try {
+    const item = await findItemById(itemId)
+    const user = await findUserById(userId)
+
+    if (item === undefined || user === undefined) {
+      throw new Error('Item or User not found')
+    }
+
+    if (user.wishlist.indexOf(item._id) !== -1) {
+      return user.wishlist
+    }
+
+    user.wishlist.push(item._id)
+    user.save()
+
+    return user.wishlist
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
 export default {
   getItems,
   getUsers,
@@ -125,4 +159,6 @@ export default {
   deleteUser,
   deleteItem,
   findItemsByUserId,
+  getWishlist,
+  addToWishList,
 }

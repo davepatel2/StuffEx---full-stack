@@ -79,6 +79,24 @@ app.get('/items/:id', async (req, res) => {
   res.status(statusCode).send(item || {})
 })
 
+app.get('/users/:userId/wishlist', async (req, res) => {
+  const userId = req.params.userId
+  const wishlist = await Database.getWishlist(userId)
+  const statusCode = wishlist === undefined ? 500 : 200
+
+  res.status(statusCode).send(wishlist || [])
+})
+
+app.put('/users/:userId/wishlist/:itemId', async (req, res) => {
+  const userId = req.params.userId
+  const itemId = req.params.itemId
+
+  const editedWishlist = await Database.addToWishList(userId, itemId)
+  const statusCode = editedWishlist === undefined ? 500 : 200
+
+  res.status(statusCode).send(editedWishlist)
+})
+
 app.post('/users/:userId/items', async (req, res) => {
   const userId = req.params.userId
   const createdItem = await Database.createItem(req.body, userId)
