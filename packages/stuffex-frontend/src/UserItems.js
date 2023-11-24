@@ -11,7 +11,7 @@ function UserItems({ backendRoot }) {
       .then((res) => res.json())
       .then((data) => setUserItems(data))
       .catch((error) => console.error(error))
-  }, [])
+  }, [userId, backendRoot]);
 
   return <Item itemData={userItems} showSearchBar={false} title="Your Items" />
 }
