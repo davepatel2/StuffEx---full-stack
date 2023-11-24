@@ -7,6 +7,7 @@ import Form from './components/Form'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
+import UserItems from './UserItems'
 
 function MyApp() {
   const [items, setItems] = useState([])
@@ -43,7 +44,6 @@ function MyApp() {
         body: JSON.stringify(item),
       }
     )
-
     return promise
   }
 
@@ -70,6 +70,10 @@ function MyApp() {
             path="/item/:itemId"
             element={<ItemPage backendRoot={backendRoot} />}
           />
+          <Route
+            path="/user/:userId/items"
+            element={<UserItems backendRoot={backendRoot} />}
+          />{' '}
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}
