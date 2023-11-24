@@ -80,7 +80,7 @@ function ItemPage(props) {
             )}
           </>
         ) : (
-          <img src={noImage} className="image" alt="No Image" />
+          <img src={noImage} className="image" alt="Nothing Uploaded" />
         )}
       </div>
       <p>{item.description}</p>
