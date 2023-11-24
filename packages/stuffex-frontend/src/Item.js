@@ -1,75 +1,14 @@
+//Item.js
 import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-
 import noImage from './images/no_image.png'
+import './Item.css'
 
-function ItemHeader() {
-  return (
-    <div style={{ textAlign: 'center', fontSize: '24px', padding: '20px 0' }}>
-      Recently Posted
-    </div>
-  )
+function ItemHeader({ title }) {
+  return <div className="item-header">{title}</div>
 }
 
 function ItemBody(props) {
-  const gridContainerStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '10px',
-    padding: '10px',
-  }
-
-  const itemStyle = {
-    border: '1px solid green',
-    borderRadius: '10px',
-    padding: '10px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    boxShadow: '0px 2px 4px rgba(0, 128, 0, 0.2)',
-    minHeight: '300px',
-  }
-
-  const imageStyle = {
-    width: '100%',
-    height: '200px',
-    objectFit: 'contain',
-    border: '1px solid green',
-    borderRadius: '5px',
-  }
-
-  const textStyle = {
-    maxHeight: '100px', // Fixed maximum height
-    overflowY: 'auto', // Enable vertical scrolling
-    padding: '5px',
-    textAlign: 'justify',
-    height: '100px', // Fixed height for consistency
-  }
-
-  const buttonContainerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    height: '30px', // Fixed height for navigation buttons
-  }
-
-  const buttonStyle = {
-    padding: '3px 6px', // Reduced padding
-    margin: '5px',
-    border: '1px solid green',
-    borderRadius: '5px',
-    backgroundColor: 'white',
-    color: 'black',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    fontSize: '12px', // Smaller font size
-    transition: 'background-color 0.3s',
-  }
-
-  const lineStyle = {
-    borderTop: '1px solid green',
-    margin: '10px 0',
-  }
-
   const getImageSource = (item, index) => {
     return item.images.length > 0 ? item.images[index] : noImage
   }
@@ -97,31 +36,30 @@ function ItemBody(props) {
     const imageSrc = getImageSource(item, imageIndex)
 
     const showNavigationButtons = item.images.length > 1
-
     const itemUrl = `/item/${item._id}`
 
     return (
-      <div style={itemStyle} key={itemIndex}>
+      <div className="item-style" key={itemIndex}>
         <Link to={itemUrl}>
-          <div style={{ ...textStyle, maxHeight: '30px' }}>{item.title}</div>
+          <div className="item-title">{item.title}</div>
         </Link>
-        <div style={lineStyle} /> {/* Always show the top line */}
-        <div style={{ textAlign: 'center' }}>
-          <div style={buttonContainerStyle}>
+        <div className="line-style" />
+        <div className="image-navigation">
+          <div className="button-container">
             {showNavigationButtons && (
               <button
-                style={buttonStyle}
+                className="navigation-button"
                 onClick={() => navigateImage(imageIndex, itemIndex, -1)}
               >
                 Prev
               </button>
             )}
           </div>
-          <img src={imageSrc} alt={item.title} style={imageStyle} />
-          <div style={buttonContainerStyle}>
+          <img src={imageSrc} alt={item.title} className="image-style" />
+          <div className="button-container">
             {showNavigationButtons && (
               <button
-                style={buttonStyle}
+                className="navigation-button"
                 onClick={() => navigateImage(imageIndex, itemIndex, 1)}
               >
                 Next
@@ -129,13 +67,13 @@ function ItemBody(props) {
             )}
           </div>
         </div>
-        <div style={lineStyle} /> {/* Always show the bottom line */}
-        <div style={textStyle}>{item.description}</div>
+        <div className="line-style" />
+        <div className="item-description">{item.description}</div>
       </div>
     )
   })
 
-  return <div style={gridContainerStyle}>{rows}</div>
+  return <div className="grid-container-style">{rows}</div>
 }
 
 function SearchBar(props) {
@@ -143,32 +81,15 @@ function SearchBar(props) {
 
   const handleSearch = () => props.updateItems(searchBarInput.current.value)
 
-  const inputHeight = '48px'
-
-  const divStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-
-  const inputStyle = {
-    height: inputHeight,
-    fontSize: '2em',
-  }
-
-  const buttonStyle = {
-    height: inputHeight,
-  }
-
   return (
-    <div style={divStyle}>
+    <div className="search-bar">
       <input
-        style={inputStyle}
+        className="search-input"
         type="text"
         ref={searchBarInput}
         placeholder="Search for anything..."
       />
-      <button onClick={handleSearch} style={buttonStyle}>
+      <button onClick={handleSearch} className="search-button">
         Search
       </button>
     </div>
@@ -176,10 +97,11 @@ function SearchBar(props) {
 }
 
 function Item(props) {
+  const { showSearchBar = true, title = 'Recently Posted' } = props
   return (
     <div>
-      <SearchBar updateItems={props.updateItems} />
-      <ItemHeader />
+      {showSearchBar && <SearchBar updateItems={props.updateItems} />}
+      <ItemHeader title={title} />
       <ItemBody itemData={props.itemData} />
     </div>
   )
