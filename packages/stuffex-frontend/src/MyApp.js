@@ -7,11 +7,11 @@ import Form from './components/Form'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
+import Register from './Register'
+import { backendRoot } from './AppConfig'
 
 function MyApp() {
   const [items, setItems] = useState([])
-
-  const backendRoot = 'https://stuffex.azurewebsites.net'
 
   function populateItems(query) {
     fetchUsers(query)
@@ -66,6 +66,7 @@ function MyApp() {
           />
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/item/:itemId"
             element={<ItemPage backendRoot={backendRoot} />}
