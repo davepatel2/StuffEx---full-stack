@@ -17,6 +17,20 @@ mongoose
   })
   .catch((error) => console.log(error))
 
+function removePasswordField(user_object) {
+  const skippedKeys = new Set(['hashed_password'])
+  const result = {}
+  Object.keys(user_object).forEach((key) => {
+    if (skippedKeys.has(key)) {
+      return
+    }
+
+    result[key] = user_object[key]
+  })
+
+  return result
+}
+
 async function getItems() {
   try {
     return await Item.find()
@@ -28,7 +42,9 @@ async function getItems() {
 
 async function getUsers() {
   try {
-    return await User.find()
+    return (await User.find())
+      .map((user) => user.toObject())
+      .map(removePasswordField)
   } catch (error) {
     console.log(error)
     return undefined
@@ -46,7 +62,7 @@ async function findItemById(itemId) {
 
 async function findUserById(userId) {
   try {
-    return await User.findById(userId)
+    return removePasswordField((await User.findById(userId)).toObject())
   } catch (error) {
     console.log(error)
     return undefined
