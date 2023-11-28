@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   items_bought: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
   reviews_written: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
   reviews_received: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
+  wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
 })
 
 const User = mongoose.model('User', userSchema)
