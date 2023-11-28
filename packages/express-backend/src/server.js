@@ -27,6 +27,7 @@ app.get('/users', async (req, res) => {
 
 app.post('/users', async (req, res) => {
   const createdUser = await Database.createUser(req.body)
+
   const statusCode = createdUser === undefined ? 400 : 201
 
   res.status(statusCode).json(createdUser || {})
