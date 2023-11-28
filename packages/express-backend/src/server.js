@@ -1,7 +1,6 @@
 import cors from 'cors'
 import express from 'express'
 import bodyParser from 'body-parser'
-import userHandler from './handler/user-handler.js'
 
 import Database from '../src/persistence/mongoose-connection.js'
 
@@ -17,7 +16,6 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello, world!')
-  console.log(userHandler.getId())
 })
 
 app.get('/users', async (req, res) => {
@@ -28,7 +26,7 @@ app.get('/users', async (req, res) => {
 })
 
 app.post('/users', async (req, res) => {
-  const createdUser = await userHandler.createUser(req.body)
+  const createdUser = await Database.createUser(req.body)
 
   const statusCode = createdUser === undefined ? 400 : 201
 
