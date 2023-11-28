@@ -34,58 +34,58 @@ function Profile(props) {
 
       setErrors(profErrors)
     }
-}
-
-    // Function to handle changes in profile inputs
-    function handleChange(event) {
-      const { name, value } = event.target
-      // Update form data state
-      setUser((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }))
-      // Clear specific field error when user starts typing
-      if (errors[name]) {
-        setErrors((prevErrors) => ({ ...prevErrors, [name]: false }))
-      }
-    }
-
-    // Render the form with input fields and handling errors
-    return (
-      <form>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          value={user.username}
-          onChange={handleChange}
-          className={errors.username ? 'input-error' : ''}
-        />
-
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          value={user.email}
-          onChange={handleChange}
-          className={errors.email ? 'input-error' : ''}
-        />
-
-        <label htmlFor="phone">Phone Number</label>
-        <input
-          type="text"
-          name="phone"
-          id="phone"
-          value={user.phone}
-          onChange={handleChange}
-          className={errors.phone ? 'input-error' : ''}
-        />
-
-        <input type="button" value="Create Profile" onClick={createProf} />
-      </form>
-    )
   }
+
+  // Function to handle changes in profile inputs
+  function handleChange(event) {
+    const { name, value } = event.target
+    // Update form data state
+    setUser((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+    // Clear specific field error when user starts typing
+    if (errors[name]) {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: false }))
+    }
+  }
+
+  // Render the form with input fields and handling errors
+  return (
+    <form>
+      <label htmlFor="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        value={user.username}
+        onChange={handleChange}
+        className={errors.username ? 'input-error' : ''}
+      />
+
+      <label htmlFor="email">Email</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        value={user.email}
+        onChange={handleChange}
+        className={errors.email ? 'input-error' : ''}
+      />
+
+      <label htmlFor="phone">Phone Number</label>
+      <input
+        type="text"
+        name="phone"
+        id="phone"
+        value={user.phone}
+        onChange={handleChange}
+        className={errors.phone ? 'input-error' : ''}
+      />
+
+      <input type="button" value="Create Profile" onClick={createProf} />
+    </form>
+  )
+}
 
 export default Profile
