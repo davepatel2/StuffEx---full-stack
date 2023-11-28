@@ -43,7 +43,6 @@ function MyApp() {
         body: JSON.stringify(item),
       }
     )
-
     return promise
   }
 
@@ -71,6 +70,10 @@ function MyApp() {
             path="/item/:itemId"
             element={<ItemPage backendRoot={backendRoot} />}
           />
+          <Route
+            path="/user/:userId/items"
+            element={<UserItems backendRoot={backendRoot} />}
+          />{' '}
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}
