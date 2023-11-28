@@ -12,7 +12,7 @@ import UserItems from './UserItems'
 function MyApp() {
   const [items, setItems] = useState([])
 
-  const backendRoot = 'https://stuffex.azurewebsites.net'
+  const backendRoot = 'http://localhost:8000'
 
   function populateItems(query) {
     fetchUsers(query)
