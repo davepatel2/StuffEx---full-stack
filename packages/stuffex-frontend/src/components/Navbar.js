@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from '../images/logo.png'
+import User from '../images/profile.png'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   const navbarStyle = {
@@ -24,6 +25,9 @@ const Navbar = () => {
         <Link to="/About">About</Link>
         <Link to="/Form">List an Item</Link>
         <Link to="/register">Register</Link>
+        <Link to="/Profile">
+          <img src={User} alt="User" style={{ height: 50 }} />
+        </Link>
       </div>
     </nav>
   )

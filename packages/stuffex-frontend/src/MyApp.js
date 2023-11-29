@@ -4,6 +4,7 @@ import Item from './Item'
 import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Form from './components/Form'
+import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
@@ -12,9 +13,10 @@ import { backendRoot } from './AppConfig'
 
 function MyApp() {
   const [items, setItems] = useState([])
+  const [users, setUsers] = useState([])
 
   function populateItems(query) {
-    fetchUsers(query)
+    fetchItems(query)
       .then((res) => res.json())
       .then((json) => {
         console.log(json)
@@ -27,8 +29,27 @@ function MyApp() {
 
   useEffect(populateItems, [])
 
-  function fetchUsers(query) {
+  function fetchItems(query) {
     const promise = fetch(`${backendRoot}/items${query ? '?q=' + query : ''}`)
+    return promise
+  }
+
+  function populateUsers(query) {
+    fetchUsers(query)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json)
+        setUsers(json)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(populateUsers, [])
+
+  function fetchUsers(query) {
+    const promise = fetch(`${backendRoot}/users${query ? '?q=' + query : ''}`)
     return promise
   }
 
@@ -46,9 +67,28 @@ function MyApp() {
     return promise
   }
 
-  function updateList(person) {
-    postItem(person)
-      .then(() => setItems([...items, person]))
+  function postUser(user) {
+    const promise = fetch(`${backendRoot}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+    return promise
+  }
+
+  function updateList(item) {
+    postItem(item)
+      .then(() => setItems([...items, item]))
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  function updateUser(user) {
+    postUser(user)
+      .then(() => setUsers([...users, user]))
       .catch((error) => {
         console.log(error)
       })
@@ -66,6 +106,10 @@ function MyApp() {
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/Profile"
+            element={<Profile handleProfile={updateUser} />}
+          />
           <Route
             path="/item/:itemId"
             element={<ItemPage backendRoot={backendRoot} />}

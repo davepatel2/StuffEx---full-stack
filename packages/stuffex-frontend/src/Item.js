@@ -80,16 +80,39 @@ function SearchBar(props) {
   const searchBarInput = useRef(null)
 
   const handleSearch = () => props.updateItems(searchBarInput.current.value)
-
+  const restoreItems = () => {
+    searchBarInput.current.value = ''; // Clear the input value
+    props.updateItems(); 
+  };
   return (
-    <div className="search-bar">
+    <div
+      className="search-bar"
+      style={{
+        width: 800,
+        margin: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       <input
         className="search-input"
         type="text"
         ref={searchBarInput}
+        style={{ flex: 1, margin: '30 px', fontSize: '18px', height: '40px' }} // Adjust styles as needed
         placeholder="Search for anything..."
       />
-      <button onClick={handleSearch} className="search-button">
+      <button
+        onClick={restoreItems}
+        style={{ width: '40px', height: '46px', borderLeft: 'none' }}
+        className="search-button"
+      >
+        X
+      </button>
+      <button
+        onClick={handleSearch}
+        className="search-button"
+        style={{ marginLeft: '40px', height: '46px', fontSize: '18px' }}
+      >
         Search
       </button>
     </div>
