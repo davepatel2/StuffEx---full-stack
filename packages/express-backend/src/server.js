@@ -128,12 +128,15 @@ app.get('/users/:userId/items-bought', async (req, res) => {
   res.status(statusCode).send(items || [])
 })
 
-app.post('/users/:userId/items-bought', async (req, res) => {
-  const userId = req.params.userId
-  const createdItem = await Database.addItemToUserBought(req.body, userId)
-  const statusCode = createdItem === undefined ? 500 : 201
+app.patch('/users/:userId/items/:itemId', async (req, res) => {
+  const { userId, itemId } = req.params
+  const updatedItem = await Database.updateItemBuyerAndAddToUserBought(
+    itemId,
+    userId
+  )
+  const statusCode = updatedItem === undefined ? 500 : 200
 
-  res.status(statusCode).send(createdItem || {})
+  res.status(statusCode).send(updatedItem || {})
 })
 
 app.listen(process.env.PORT || port, () => {

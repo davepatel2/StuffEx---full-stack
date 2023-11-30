@@ -88,24 +88,21 @@ async function createItem(item, uid) {
   }
 }
 
-async function addItemToUserBought(item, uid) {
+async function updateItemBuyerAndAddToUserBought(itemId, userId) {
   try {
-    if (Object.keys(item).includes('userId')) {
-      throw new Error('Item passed to createItem must not include a userId')
+    const item = await findItemById(itemId)
+    const user = await findUserById(userId)
+    if (!item || !user) {
+      throw new Error('Item or User not found')
     }
 
-    const userId = new mongoose.Types.ObjectId(uid)
+    item.buyer_id = userId
+    await item.save()
 
-    item.seller_id = userId
+    user.items_bought.push(item._id)
+    await user.save()
 
-    const itemToAdd = new Item(item)
-    const itemCreator = await findUserById(userId)
-    const savedItem = await itemToAdd.save()
-
-    itemCreator.items_bought.push(savedItem.id)
-    itemCreator.save()
-
-    return savedItem
+    return item
   } catch (error) {
     console.log(error)
     return undefined
@@ -211,7 +208,7 @@ export default {
   findBoughtItemsByUserId,
   createUser,
   createItem,
-  addItemToUserBought,
+  updateItemBuyerAndAddToUserBought,
   deleteUser,
   deleteItem,
   findItemsByUserId,
