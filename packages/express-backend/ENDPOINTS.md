@@ -45,3 +45,14 @@ Gets a list of the items a particular user has posted.
 ### POST `/users/:userId/items`
 
 Creates a new listing from a user. The post body should contain an object meeting the requirements in the item schema. `title` and `description` are the only required fields.
+
+### GET ` /users/:userId/items-bought`
+
+Retrieves a list of items that a specific user has bought. Use the `userId` path variable to specify which user's purchased items you want to see. For example,
+`/users/abc/items-bought` to see items bought by the user with ID `abc`.
+
+### PATCH `/users/:userId/items/:itemId`
+
+Updates the buyer information for an item and adds the item to the user's bought list. To mark an item as bought by a user, send a PATCH request with the `userId`
+and `itemId`. For example, `/users/abc/items/123` to mark the item with ID `123`
+as bought by the user with ID `abc`.
