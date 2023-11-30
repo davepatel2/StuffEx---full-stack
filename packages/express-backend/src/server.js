@@ -120,6 +120,22 @@ app.get('/users/:userId/items', async (req, res) => {
   res.status(statusCode).send(items || [])
 })
 
+app.get('/users/:userId/items-bought', async (req, res) => {
+  const userId = req.params.userId
+  const items = await Database.findBoughtItemsByUserId(userId)
+  const statusCode = items === undefined ? 500 : 200
+
+  res.status(statusCode).send(items || [])
+})
+
+app.post('/users/:userId/items-bought', async (req, res) => {
+  const userId = req.params.userId
+  const createdItem = await Database.addItemToUserBought(req.body, userId)
+  const statusCode = createdItem === undefined ? 500 : 201
+
+  res.status(statusCode).send(createdItem || {})
+})
+
 app.listen(process.env.PORT || port, () => {
   console.log('REST API is listening.')
 })

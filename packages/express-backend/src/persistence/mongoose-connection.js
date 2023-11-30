@@ -88,6 +88,30 @@ async function createItem(item, uid) {
   }
 }
 
+async function addItemToUserBought(item, uid) {
+  try {
+    if (Object.keys(item).includes('userId')) {
+      throw new Error('Item passed to createItem must not include a userId')
+    }
+
+    const userId = new mongoose.Types.ObjectId(uid)
+
+    item.seller_id = userId
+
+    const itemToAdd = new Item(item)
+    const itemCreator = await findUserById(userId)
+    const savedItem = await itemToAdd.save()
+
+    itemCreator.items_bought.push(savedItem.id)
+    itemCreator.save()
+
+    return savedItem
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
 async function deleteUser(userId) {
   try {
     await User.findByIdAndDelete(userId)
@@ -109,6 +133,17 @@ async function findItemsByUserId(userId) {
     const user = await findUserById(userId)
     await user.populate('items_sold')
     return user.items_sold
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
+async function findBoughtItemsByUserId(userId) {
+  try {
+    const user = await findUserById(userId)
+    await user.populate('items_bought')
+    return user.items_bought
   } catch (error) {
     console.log(error)
     return undefined
@@ -173,8 +208,10 @@ export default {
   getUsers,
   findItemById,
   findUserById,
+  findBoughtItemsByUserId,
   createUser,
   createItem,
+  addItemToUserBought,
   deleteUser,
   deleteItem,
   findItemsByUserId,
