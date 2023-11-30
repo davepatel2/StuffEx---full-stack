@@ -81,9 +81,9 @@ function SearchBar(props) {
 
   const handleSearch = () => props.updateItems(searchBarInput.current.value)
   const restoreItems = () => {
-    searchBarInput.current.value = ''; // Clear the input value
-    props.updateItems(); 
-  };
+    searchBarInput.current.value = '' // Clear the input value
+    props.updateItems()
+  }
   return (
     <div
       className="search-bar"

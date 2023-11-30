@@ -13,7 +13,13 @@ function UserWishlist({ backendRoot }) {
       .catch((error) => console.error(error))
   }, [userId, backendRoot])
 
-  return <Item itemData={wishlistItems} showSearchBar={false} title="Your Wishlist" />
+  return (
+    <Item
+      itemData={wishlistItems}
+      showSearchBar={false}
+      title="Your Wishlist"
+    />
+  )
 }
 
 export default UserWishlist

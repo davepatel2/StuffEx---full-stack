@@ -13,7 +13,13 @@ function UserBoughtItems({ backendRoot }) {
       .catch((error) => console.error(error))
   }, [userId, backendRoot])
 
-  return <Item itemData={boughtItems} showSearchBar={false} title="Items You Have Received" />
+  return (
+    <Item
+      itemData={boughtItems}
+      showSearchBar={false}
+      title="Items You Have Received"
+    />
+  )
 }
 
 export default UserBoughtItems
