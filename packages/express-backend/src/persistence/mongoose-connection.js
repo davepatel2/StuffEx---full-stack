@@ -91,16 +91,20 @@ async function createItem(item, uid) {
 async function updateItemBuyerAndAddToUserBought(itemId, buyerId) {
   try {
     const item = await findItemById(itemId)
-    const user = await findUserById(buyerId)
-    if (!item || !user) {
-      throw new Error('Item or User not found')
+    if (!item) {
+      throw new Error('Item not found')
+    }
+
+    const buyer = await findUserById(buyerId)
+    if (!buyer) {
+      throw new Error('Buyer not found')
     }
 
     item.buyer_id = buyerId
     await item.save()
 
-    user.items_bought.push(item._id)
-    await user.save()
+    buyer.items_bought.push(item._id)
+    await buyer.save()
 
     return item
   } catch (error) {

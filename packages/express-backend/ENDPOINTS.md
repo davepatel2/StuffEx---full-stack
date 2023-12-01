@@ -51,8 +51,6 @@ Creates a new listing from a user. The post body should contain an object meetin
 Retrieves a list of items that a specific user has bought. Use the `userId` path variable to specify which user's purchased items you want to see. For example,
 `/users/abc/items-bought` to see items bought by the user with ID `abc`.
 
-### PATCH `/users/:userId/items/:itemId`
+### PATCH `/users/:sellerId/items/:itemId`
 
-Updates the buyer information for an item and adds the item to the user's bought list. To mark an item as bought by a user, send a PATCH request with the `userId`
-and `itemId`. For example, `/users/abc/items/123` to mark the item with ID `123`
-as bought by the user with ID `abc`.
+Updates the buyer details for a specific item and adds it to the buyer's list of purchased items. This endpoint requires the `sellerId`and `itemId` path variables, where `sellerId` is the ID of the user selling the item and `itemId` is the ID of the item being purchased. The request body must include `buyerId`, which is the ID of the user buying the item.

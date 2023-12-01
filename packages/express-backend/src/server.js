@@ -128,15 +128,23 @@ app.get('/users/:userId/items-bought', async (req, res) => {
   res.status(statusCode).send(items || [])
 })
 
-app.patch('/users/:userId/items/:itemId', async (req, res) => {
-  const { userId, itemId } = req.params
-  const updatedItem = await Database.updateItemBuyerAndAddToUserBought(
-    itemId,
-    userId
-  )
-  const statusCode = updatedItem === undefined ? 500 : 200
+app.patch('/users/:sellerId/items/:itemId', async (req, res) => {
+  const itemId = req.params.itemId
+  const buyerId = req.body.buyerId
 
-  res.status(statusCode).send(updatedItem || {})
+  if (!buyerId) {
+    return res.status(400).send({ error: 'buyerId is required' })
+  }
+
+  try {
+    const updatedItem = await Database.updateItemBuyerAndAddToUserBought(
+      itemId,
+      buyerId
+    )
+    res.status(200).send(updatedItem)
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
 })
 
 app.listen(process.env.PORT || port, () => {
