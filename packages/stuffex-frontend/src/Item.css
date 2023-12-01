@@ -68,13 +68,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 800px;
+  margin: auto;
+  border: 2px solid #3b8a6b; /* Set border color */
+  border-radius: 10px; /* Set rounded corners */
 }
 
 .search-input {
-  height: 48px;
-  font-size: 2em;
+  flex: 1;
+  font-size: 18px;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding: 5px; /* Adjust padding as needed */
+  border-radius: 8px; /* Set rounded corners for the input */
 }
-
-.search-button {
-  height: 48px;
+/* Additional styles for the 'X' button */
+.search-button-clear {
+  background-color: #3b8a6b;
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  border: none;
 }
