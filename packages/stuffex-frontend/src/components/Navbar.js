@@ -1,13 +1,13 @@
-import React from 'react';
-import Logo from '../images/logo.png';
-import User from '../images/profile.png';
-import { Link } from 'react-router-dom';
-import './Navbar.css'; // Import the CSS file
+import React from 'react'
+import Logo from '../images/logo.png'
+import User from '../images/profile.png'
+import { Link } from 'react-router-dom'
+import './Navbar.css' // Import the CSS file
 
 const Navbar = (props) => {
   const restoreItems = () => {
-    props.updateItems();
-  };
+    props.updateItems()
+  }
 
   return (
     <nav className="navbar-style">
@@ -28,7 +28,7 @@ const Navbar = (props) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

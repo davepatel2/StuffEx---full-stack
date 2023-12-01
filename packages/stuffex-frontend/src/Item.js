@@ -39,11 +39,9 @@ function ItemBody(props) {
     const itemUrl = `/item/${item._id}`
 
     return (
+      
       <div className="item-style" key={itemIndex}>
-        <Link to={itemUrl}>
-          <div className="item-title">{item.title}</div>
-        </Link>
-        <div className="line-style" />
+        
         <div className="image-navigation">
           <div className="button-container">
             {showNavigationButtons && (
@@ -68,8 +66,12 @@ function ItemBody(props) {
           </div>
         </div>
         <div className="line-style" />
+        <Link to={itemUrl}>
+        <div className="item-title">{item.title}</div>
+        </Link>
         <div className="item-description">{item.description}</div>
       </div>
+    
     )
   })
 
