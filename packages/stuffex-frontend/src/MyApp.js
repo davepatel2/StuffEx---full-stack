@@ -99,7 +99,7 @@ function MyApp() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar updateItems={populateItems} />
       <div className="container" style={{ margin: 60 }}>
         <Routes>
           <Route
