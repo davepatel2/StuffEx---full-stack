@@ -8,7 +8,9 @@ import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
-import UserItems from './UserItems'
+import UserSellingItems from './UserSellingItems'
+import UserWishlistItems from './UserWishlistItems'
+import UserBoughtItems from './UserBoughtItems'
 
 function MyApp() {
   const [items, setItems] = useState([])
@@ -116,8 +118,16 @@ function MyApp() {
           />
           <Route
             path="/user/:userId/items"
-            element={<UserItems backendRoot={backendRoot} />}
-          />{' '}
+            element={<UserSellingItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/user/:userId/wishlist"
+            element={<UserWishlistItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/user/:userId/items-bought"
+            element={<UserBoughtItems backendRoot={backendRoot} />}
+          />
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}

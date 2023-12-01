@@ -120,6 +120,33 @@ app.get('/users/:userId/items', async (req, res) => {
   res.status(statusCode).send(items || [])
 })
 
+app.get('/users/:userId/items-bought', async (req, res) => {
+  const userId = req.params.userId
+  const items = await Database.findBoughtItemsByUserId(userId)
+  const statusCode = items === undefined ? 500 : 200
+
+  res.status(statusCode).send(items || [])
+})
+
+app.patch('/users/:sellerId/items/:itemId', async (req, res) => {
+  const itemId = req.params.itemId
+  const buyerId = req.body.buyerId
+
+  if (!buyerId) {
+    return res.status(400).send({ error: 'buyerId is required' })
+  }
+
+  try {
+    const updatedItem = await Database.updateItemBuyerAndAddToUserBought(
+      itemId,
+      buyerId
+    )
+    res.status(200).send(updatedItem)
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+})
+
 app.listen(process.env.PORT || port, () => {
   console.log('REST API is listening.')
 })
