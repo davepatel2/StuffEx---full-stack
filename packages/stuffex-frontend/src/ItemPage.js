@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom'
 import noImage from './images/no_image.png'
 import { Link } from 'react-router-dom'
 import './ItemPage.css'
+import './UserPage.js'
 
 function ItemPage(props) {
   // Get the itemId from the URL parameters
   const { itemId } = useParams()
+  
 
   // State variables
   const [item, setItem] = useState([]) // Store the item data
+  const [user, setUser] = useState([])
   const [currentImageIndex, setCurrentImageIndex] = useState(0) // Index of the currently displayed image
   const [isModalOpen, setIsModalOpen] = useState(false) // Boolean to control modal visibility
 
@@ -21,11 +24,13 @@ function ItemPage(props) {
     fetch(`${backendRoot}/items/${itemId}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json)
+        
         setItem(json)
       })
       .catch((e) => console.log(e))
   }, [backendRoot, itemId])
+
+  
 
   // Function to get the image source, falling back to a placeholder if no images exist
   const getImageSource = (item, index) =>
@@ -48,10 +53,24 @@ function ItemPage(props) {
     setIsModalOpen(!isModalOpen)
   }
 
-  // JSX for the component
+  // const userId = item.seller_id
+  useEffect(() => {
+    fetch(`${backendRoot}/users/${item.seller_id}`)
+      .then((res) => res.json())
+      .then((json) => {
+        
+        //console.log(item.seller_id)
+        setUser(json)
+      })
+      .catch((e) => console.log(e))
+  }, [backendRoot, item.seller_id])
+
+  console.log(user)
+  // JSX for the component     correct link
   return (
     <div>
       <h1>{item.title}</h1>
+      <Link to={`/users/${user._id}`}>{user.username}</Link> 
       <div className="image-navigation center-content">
         {item.images && item.images.length > 0 ? (
           <>

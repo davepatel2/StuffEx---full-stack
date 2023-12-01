@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
 import UserItems from './UserItems'
+import UserPage from './UserPage'
 
 function MyApp() {
   const [items, setItems] = useState([])
@@ -114,6 +115,10 @@ function MyApp() {
             path="/item/:itemId"
             element={<ItemPage backendRoot={backendRoot} />}
           />
+          {/* <Route
+            path="/user/:userId"
+            element={<UserPage backendRoot={backendRoot}/>}
+          /> */}
           <Route
             path="/user/:userId/items"
             element={<UserItems backendRoot={backendRoot} />}
