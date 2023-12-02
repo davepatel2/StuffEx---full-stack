@@ -15,7 +15,8 @@ form label {
 }
 
 form input[type='text'],
-form input[type='file'] {
+form input[type='file'],
+form input[type='password'] {
   width: 100%;
   padding: 8px 0px;
   margin-bottom: 10px;
@@ -77,7 +78,8 @@ form textarea {
   margin: auto;
 }
 
-form input[type='text'].input-error {
+form input[type='text'].input-error,
+form input[type='password'].input-error {
   border: 1px solid red;
 }
 

@@ -1,6 +1,5 @@
-import bcrypt from 'bcryptjs'
 import { useRef } from 'react'
-import { backendRoot, passwordHashStrength } from './AppConfig'
+import { backendRoot } from './AppConfig'
 
 function Register() {
   const usernameInput = useRef(null)
@@ -27,7 +26,7 @@ function Register() {
       throw new Error('Passwords do not match. Please try again.')
     }
 
-    const hashed = await bcrypt.hash(password, passwordHashStrength)
+    const hashed = password
     return { username: username, password: hashed }
   }
 
