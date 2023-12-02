@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Item from './Item'
 
-function UserItems({ backendRoot }) {
+function UserSellingItems({ backendRoot }) {
   const [userItems, setUserItems] = useState([])
   const [user, setUser] = useState({username: ''})
   
@@ -19,8 +19,13 @@ function UserItems({ backendRoot }) {
       .catch((error) => console.error(error))
   }, [userId, backendRoot])
 
-
-  return <Item itemData={userItems} showSearchBar={false} title= {`items by ${user.username}`}/>
+  return (
+    <Item
+      itemData={userItems}
+      showSearchBar={false}
+      title="Items You Are Giving Away"
+    />
+  )
 }
 
-export default UserItems
+export default UserSellingItems

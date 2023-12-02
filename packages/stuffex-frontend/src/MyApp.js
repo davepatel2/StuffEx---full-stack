@@ -8,9 +8,11 @@ import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
-import UserItems from './UserItems'
+import UserSellingItems from './UserSellingItems'
+import UserWishlistItems from './UserWishlistItems'
+import UserBoughtItems from './UserBoughtItems'
 import UserPage from './UserPage'
-import UserWishlistPage from './UserWishlistPage'
+
 function MyApp() {
   const [items, setItems] = useState([])
   const [users, setUsers] = useState([])
@@ -98,7 +100,7 @@ function MyApp() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar updateItems={populateItems} />
       <div className="container" style={{ margin: 60 }}>
         <Routes>
           <Route
@@ -116,21 +118,21 @@ function MyApp() {
             element={<ItemPage backendRoot={backendRoot} />}
           />
           <Route
-            path="/users/:userId"
-            element={<UserPage backendRoot={backendRoot}/>}
-          />
-          <Route
-            path="/users/:userId/items/wishlist"
-            element={<UserPage backendRoot={backendRoot}/>}
-          />
-          <Route
-            path="/users/:userId/items/items_bought"
-            element={<UserPage backendRoot={backendRoot}/>}
-          />
-          <Route
             path="/users/:userId/items"
-            element={<UserItems backendRoot={backendRoot} />}
-          />{' '}
+            element={<UserSellingItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/users/:userId/wishlist"
+            element={<UserWishlistItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/users/:userId/items_bought"
+            element={<UserBoughtItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/users/:userId"
+            element={<UserPage backendRoot={backendRoot} />}
+          />
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}
