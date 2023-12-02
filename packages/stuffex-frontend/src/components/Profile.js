@@ -1,7 +1,6 @@
 // Importing necessary React hooks and CSS for the form
 import React, { useState } from 'react'
 import './form.css'
-import { backendRoot } from '../AppConfig'
 
 // Functional component Form with props passed from parent component
 function Profile(props) {
