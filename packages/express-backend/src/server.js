@@ -3,6 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 import Database from '../src/persistence/mongoose-connection.js'
+import Passwords from './handler/passwords.js'
 
 import { applyKeywordItemSearch } from './handler/search-filter.js'
 
@@ -26,6 +27,9 @@ app.get('/users', async (req, res) => {
 })
 
 app.post('/users', async (req, res) => {
+  const user = req.body
+  user['hashed_password'] = await Passwords.hashPassword(req.body.password)
+
   const createdUser = await Database.createUser(req.body)
 
   const statusCode = createdUser === undefined ? 400 : 201
@@ -104,8 +108,33 @@ app.delete('/users/:userId/wishlist/:itemId', async (req, res) => {
   res.status(204).send()
 })
 
+app.post('/login', async (req, res) => {
+  const { username } = req.body
+  const user = await Database.findUserByUsername(username)
+
+  if (!user) {
+    res.status(404).end()
+    return
+  }
+
+  Passwords.loginUser(req, res, user)
+})
+
 app.post('/users/:userId/items', async (req, res) => {
   const userId = req.params.userId
+
+  const authPayload = Passwords.extractToken(req, res)
+  if (authPayload === undefined) {
+    return
+  }
+
+  const { username: authUsername, userId: authUserId } = authPayload
+  console.log(`Request from ${authUsername} (${authUserId})`)
+  if (userId !== authUserId) {
+    res.status(401).end()
+    return
+  }
+
   const createdItem = await Database.createItem(req.body, userId)
   const statusCode = createdItem === undefined ? 500 : 201
 

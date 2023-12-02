@@ -1,11 +1,8 @@
 import mongoose from 'mongoose'
 import Item from '../schemas/item_schema.js'
 import User from '../schemas/user_schema.js'
-import bcrypt from 'bcrypt'
 
 const mongoDBUri = process.env.MONGODB_URI
-
-const saltRounds = 10
 
 if (!mongoDBUri) {
   throw new Error('MongoDB connection URI is missing')
@@ -74,8 +71,6 @@ async function findUserById(userId) {
 
 async function createUser(user) {
   try {
-    const salt = await bcrypt.genSalt(saltRounds)
-    user['hashed_password'] = await bcrypt.hash(user['hashed_password'], salt)
     const userToAdd = new User(user)
     const savedUser = await userToAdd.save()
     return removePasswordField(savedUser.toObject())
@@ -189,6 +184,20 @@ async function removeFromWishList(userId, itemId) {
   }
 }
 
+async function findUserByUsername(username) {
+  try {
+    const user = await User.findOne({ username: username }).exec()
+    if (!user) {
+      throw new Error(`Username "${username}" not found`)
+    }
+
+    return user
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
 export default {
   getItems,
   getUsers,
@@ -202,4 +211,5 @@ export default {
   getWishlist,
   addToWishList,
   removeFromWishList,
+  findUserByUsername,
 }
