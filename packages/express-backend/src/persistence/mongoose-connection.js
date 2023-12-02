@@ -104,6 +104,31 @@ async function createItem(item, uid) {
   }
 }
 
+async function updateItemBuyerAndAddToUserBought(itemId, buyerId) {
+  try {
+    const item = await findItemById(itemId)
+    if (!item) {
+      throw new Error('Item not found')
+    }
+
+    const buyer = await findUserById(buyerId)
+    if (!buyer) {
+      throw new Error('Buyer not found')
+    }
+
+    item.buyer_id = buyerId
+    await item.save()
+
+    buyer.items_bought.push(item._id)
+    await buyer.save()
+
+    return item
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
 async function deleteUser(userId) {
   try {
     await User.findByIdAndDelete(userId)
@@ -125,6 +150,17 @@ async function findItemsByUserId(userId) {
     const user = await findUserById(userId)
     await user.populate('items_sold')
     return user.items_sold
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
+async function findBoughtItemsByUserId(userId) {
+  try {
+    const user = await findUserById(userId)
+    await user.populate('items_bought')
+    return user.items_bought
   } catch (error) {
     console.log(error)
     return undefined
@@ -203,8 +239,10 @@ export default {
   getUsers,
   findItemById,
   findUserById,
+  findBoughtItemsByUserId,
   createUser,
   createItem,
+  updateItemBuyerAndAddToUserBought,
   deleteUser,
   deleteItem,
   findItemsByUserId,

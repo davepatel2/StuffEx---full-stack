@@ -1,6 +1,7 @@
 /* form.css */
 
 form {
+  font-family: 'Inter', sans-serif;
   max-width: 55%;
   margin: auto;
   padding: 20px;
@@ -85,4 +86,8 @@ form input[type='password'].input-error {
 
 .input-error {
   border: 1px solid red;
+}
+
+.list-button {
+  color: solid #3b8a6b;
 }

@@ -8,7 +8,10 @@ import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import About from './components/About'
 import ItemPage from './ItemPage'
-import Register from './Register'
+import UserSellingItems from './UserSellingItems'
+import UserWishlistItems from './UserWishlistItems'
+import UserBoughtItems from './UserBoughtItems'
+
 import { backendRoot } from './AppConfig'
 
 function MyApp() {
@@ -96,7 +99,7 @@ function MyApp() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar updateItems={populateItems} />
       <div className="container" style={{ margin: 60 }}>
         <Routes>
           <Route
@@ -105,7 +108,6 @@ function MyApp() {
           />
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
-          <Route path="/register" element={<Register />} />
           <Route
             path="/Profile"
             element={<Profile handleProfile={updateUser} />}
@@ -116,8 +118,16 @@ function MyApp() {
           />
           <Route
             path="/user/:userId/items"
-            element={<UserItems backendRoot={backendRoot} />}
-          />{' '}
+            element={<UserSellingItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/user/:userId/wishlist"
+            element={<UserWishlistItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/user/:userId/items-bought"
+            element={<UserBoughtItems backendRoot={backendRoot} />}
+          />
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}

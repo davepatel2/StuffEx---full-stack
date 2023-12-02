@@ -88,7 +88,7 @@ function Form(props) {
   // Render the form with input fields and handling errors
   return (
     <form>
-      <label htmlFor="title">Title</label>
+      <label htmlFor="title">Title:</label>
       <input
         type="text"
         name="title"
@@ -98,7 +98,7 @@ function Form(props) {
         className={errors.title ? 'input-error' : ''}
       />
 
-      <label htmlFor="images">Image Upload</label>
+      <label htmlFor="images">Image Upload:</label>
       <input
         type="file"
         name="images"
@@ -127,7 +127,7 @@ function Form(props) {
         ))}
       </div>
 
-      <label htmlFor="description">Description</label>
+      <label htmlFor="description">Description:</label>
       <textarea
         name="description"
         id="description"
@@ -137,7 +137,7 @@ function Form(props) {
         className={errors.description ? 'input-error' : ''}
       />
 
-      <input type="button" value="List Item" onClick={submitForm} />
+      <input type="button" className ="list-button" value="List Item" onClick={submitForm} />
     </form>
   )
 }
