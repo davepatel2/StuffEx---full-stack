@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
-
-import './ItemPage.css'
+import userImage from './images/profile.png'
+import './UserPage.css'
+import { Link } from 'react-router-dom'
 
 function UserPage(props) {
   // Get the userID from the URL parameters
@@ -32,17 +32,24 @@ function UserPage(props) {
 
   // console.log(userId)
   // JSX for the component
-  return (
-    <div>
-      <h2>About StuffEx</h2>
-      <p>
-        StuffEX is a website for individuals who want to find and get rid any
-        item. It allows people to post items they don't want anymore so others
-        can give them a new home. Unlike Craigslist, our product is strictly for
-        free items. We aren't connecting sellers to buyers but people to people.
-      </p>
-    </div>
-  )
+    return (
+      <div className="user-page">
+        <h2>
+          <img src={userImage} className="profile-image" alt="Profile" />
+        </h2>
+        <h2>{user.username}</h2>
+        <p>{/* Additional content goes here */}</p>
+        <div className="box-with-link">
+        <Link to={`/users/${userId}/items`}>Previous Listings</Link> 
+      </div>
+      <div className="box-with-link">
+        <Link to={`/users/${userId}/wishlist`}>Wishlisted Items</Link> 
+      </div>
+      <div className="box-with-link">
+        <Link to={`/users/${userId}/items_bought`}>Recived Items</Link> 
+      </div>
+      </div>
+    );
 }
 export default UserPage
     // <div>

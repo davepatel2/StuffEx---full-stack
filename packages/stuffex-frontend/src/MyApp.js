@@ -10,7 +10,7 @@ import About from './components/About'
 import ItemPage from './ItemPage'
 import UserItems from './UserItems'
 import UserPage from './UserPage'
-
+import UserWishlistPage from './UserWishlistPage'
 function MyApp() {
   const [items, setItems] = useState([])
   const [users, setUsers] = useState([])
@@ -115,12 +115,20 @@ function MyApp() {
             path="/item/:itemId"
             element={<ItemPage backendRoot={backendRoot} />}
           />
-          {/* <Route
-            path="/user/:userId"
-            element={<UserPage backendRoot={backendRoot}/>}
-          /> */}
           <Route
-            path="/user/:userId/items"
+            path="/users/:userId"
+            element={<UserPage backendRoot={backendRoot}/>}
+          />
+          <Route
+            path="/users/:userId/items/wishlist"
+            element={<UserPage backendRoot={backendRoot}/>}
+          />
+          <Route
+            path="/users/:userId/items/items_bought"
+            element={<UserPage backendRoot={backendRoot}/>}
+          />
+          <Route
+            path="/users/:userId/items"
             element={<UserItems backendRoot={backendRoot} />}
           />{' '}
         </Routes>
