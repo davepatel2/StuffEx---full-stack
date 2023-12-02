@@ -8,7 +8,6 @@ import './UserPage.js'
 function ItemPage(props) {
   // Get the itemId from the URL parameters
   const { itemId } = useParams()
-  
 
   // State variables
   const [item, setItem] = useState([]) // Store the item data
@@ -24,13 +23,10 @@ function ItemPage(props) {
     fetch(`${backendRoot}/items/${itemId}`)
       .then((res) => res.json())
       .then((json) => {
-        
         setItem(json)
       })
       .catch((e) => console.log(e))
   }, [backendRoot, itemId])
-
-  
 
   // Function to get the image source, falling back to a placeholder if no images exist
   const getImageSource = (item, index) =>
@@ -58,7 +54,6 @@ function ItemPage(props) {
     fetch(`${backendRoot}/users/${item.seller_id}`)
       .then((res) => res.json())
       .then((json) => {
-        
         //console.log(item.seller_id)
         setUser(json)
       })
@@ -70,7 +65,7 @@ function ItemPage(props) {
   return (
     <div>
       <h1>{item.title}</h1>
-      <Link to={`/users/${user._id}`}>{user.username}</Link> 
+      <Link to={`/users/${user._id}`}>{user.username}</Link>
       <div className="image-navigation center-content">
         {item.images && item.images.length > 0 ? (
           <>

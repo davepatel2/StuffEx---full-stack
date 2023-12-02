@@ -7,18 +7,15 @@ import { Link } from 'react-router-dom'
 function UserPage(props) {
   // Get the userID from the URL parameters
   const { userId } = useParams()
-  
 
   // // State variables
   // // const [item, setItem] = useState([]) // Store the item data
   const [user, setUser] = useState([])
-  
 
   // // Backend root URL
   const backendRoot = props.backendRoot
 
   // Fetch item data from the backend when the component mounts
-  
 
   useEffect(() => {
     fetch(`${backendRoot}/users/${userId}`)
@@ -32,29 +29,29 @@ function UserPage(props) {
 
   // console.log(userId)
   // JSX for the component
-    return (
-      <div className="user-page">
-        <h2>
-          <img src={userImage} className="profile-image" alt="Profile" />
-        </h2>
-        <h2>{user.username}</h2>
-        <p>{/* Additional content goes here */}</p>
-        <div className="box-with-link">
-        <Link to={`/users/${userId}/items`}>Previous Listings</Link> 
+  return (
+    <div className="user-page">
+      <h2>
+        <img src={userImage} className="profile-image" alt="Profile" />
+      </h2>
+      <h2>{user.username}</h2>
+      <p>{/* Additional content goes here */}</p>
+      <div className="box-with-link">
+        <Link to={`/users/${userId}/items`}>Previous Listings</Link>
       </div>
       <div className="box-with-link">
-        <Link to={`/users/${userId}/wishlist`}>Wishlisted Items</Link> 
+        <Link to={`/users/${userId}/wishlist`}>Wishlisted Items</Link>
       </div>
       <div className="box-with-link">
-        <Link to={`/users/${userId}/items_bought`}>Recived Items</Link> 
+        <Link to={`/users/${userId}/items_bought`}>Recived Items</Link>
       </div>
-      </div>
-    );
+    </div>
+  )
 }
 export default UserPage
-    // <div>
-    //   <h1>{user.username}</h1>
-    //   {/* <Link to={`/users/${item.seller_id}`}>{user.username}</Link>
+// <div>
+//   <h1>{user.username}</h1>
+//   {/* <Link to={`/users/${item.seller_id}`}>{user.username}</Link>
 //       <div className="image-navigation center-content">
 //         {item.images && item.images.length > 0 ? (
 //           <>
@@ -111,5 +108,3 @@ export default UserPage
 //     </div>
 //   )
 // } */}
-
-
