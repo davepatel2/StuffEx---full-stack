@@ -12,6 +12,7 @@ import UserSellingItems from './UserSellingItems'
 import UserWishlistItems from './UserWishlistItems'
 import UserBoughtItems from './UserBoughtItems'
 import UserPage from './UserPage'
+import Login from './components/Login'
 
 import { backendRoot } from './AppConfig'
 
@@ -133,6 +134,7 @@ function MyApp() {
             path="/users/:userId"
             element={<UserPage backendRoot={backendRoot} />}
           />
+          <Route path="/login" element={<Login />} />
         </Routes>
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}
