@@ -95,7 +95,7 @@ async function createItem(item, uid) {
     item.seller_id = userId
 
     const itemToAdd = new Item(item)
-    const itemCreator = await findUserById(userId)
+    const itemCreator = await User.findById(userId)
     const savedItem = await itemToAdd.save()
 
     itemCreator.items_sold.push(savedItem.id)
@@ -115,7 +115,7 @@ async function updateItemBuyerAndAddToUserBought(itemId, buyerId) {
       throw new Error('Item not found')
     }
 
-    const buyer = await findUserById(buyerId)
+    const buyer = await User.findById(buyerId)
     if (!buyer) {
       throw new Error('Buyer not found')
     }
@@ -151,7 +151,7 @@ async function deleteItem(itemId) {
 
 async function findItemsByUserId(userId) {
   try {
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
     await user.populate('items_sold')
     return user.items_sold
   } catch (error) {
@@ -162,7 +162,7 @@ async function findItemsByUserId(userId) {
 
 async function findBoughtItemsByUserId(userId) {
   try {
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
     await user.populate('items_bought')
     return user.items_bought
   } catch (error) {
@@ -173,7 +173,7 @@ async function findBoughtItemsByUserId(userId) {
 
 async function getWishlist(userId) {
   try {
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
     await user.populate('wishlist')
     return user.wishlist
   } catch (error) {
@@ -185,7 +185,7 @@ async function getWishlist(userId) {
 async function addToWishList(userId, itemId) {
   try {
     const item = await findItemById(itemId)
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
 
     if (item === undefined || user === undefined) {
       throw new Error('Item or User not found')
@@ -208,7 +208,7 @@ async function addToWishList(userId, itemId) {
 async function removeFromWishList(userId, itemId) {
   try {
     const item = await findItemById(itemId)
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
 
     if (item === undefined || user === undefined) {
       throw new Error('Item or User not found')

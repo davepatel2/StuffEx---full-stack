@@ -80,4 +80,46 @@ function loginUser(req, res, user) {
   })
 }
 
-export default { hashPassword, generateAccessToken, extractToken, loginUser }
+/**
+ * Verifies that the request has a valid `authorization` JWT with access to the
+ * targetUserId's data. On success, the promise resolves with no data. On
+ * failure, the promise rejects with an object containing a `statusCode` field
+ * and a `message` field.
+ */
+function authenticateUser(req, targetUserId) {
+  return new Promise((resolve, reject) => {
+    const authHeader = req.headers['authorization']
+    const [authType, token] = authHeader && authHeader.split(' ')
+
+    if (authType !== 'Token') {
+      reject({
+        statusCode: 401,
+        message: `Unrecognized authorization type "${authType}"`,
+      })
+    } else {
+      jwt.verify(token, TOKEN_SECRET, (error, decoded) => {
+        if (decoded) {
+          const { userId } = decoded
+          if (targetUserId === userId) {
+            resolve()
+          } else {
+            reject({
+              statusCode: 403,
+              message: `Token is not authorized for userId ${targetUserId}`,
+            })
+          }
+        } else {
+          reject({ statusCode: 403, message: error.message })
+        }
+      })
+    }
+  })
+}
+
+export default {
+  hashPassword,
+  generateAccessToken,
+  extractToken,
+  loginUser,
+  authenticateUser,
+}
