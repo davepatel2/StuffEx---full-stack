@@ -11,6 +11,7 @@ import ItemPage from './ItemPage'
 import UserSellingItems from './UserSellingItems'
 import UserWishlistItems from './UserWishlistItems'
 import UserBoughtItems from './UserBoughtItems'
+import UserPage from './UserPage'
 
 function MyApp() {
   const [items, setItems] = useState([])
@@ -117,16 +118,20 @@ function MyApp() {
             element={<ItemPage backendRoot={backendRoot} />}
           />
           <Route
-            path="/user/:userId/items"
+            path="/users/:userId/items"
             element={<UserSellingItems backendRoot={backendRoot} />}
           />
           <Route
-            path="/user/:userId/wishlist"
+            path="/users/:userId/wishlist"
             element={<UserWishlistItems backendRoot={backendRoot} />}
           />
           <Route
-            path="/user/:userId/items-bought"
+            path="/users/:userId/items_bought"
             element={<UserBoughtItems backendRoot={backendRoot} />}
+          />
+          <Route
+            path="/users/:userId"
+            element={<UserPage backendRoot={backendRoot} />}
           />
         </Routes>
         {/* <Item itemData={items} />

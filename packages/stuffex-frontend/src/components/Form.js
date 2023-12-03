@@ -137,7 +137,12 @@ function Form(props) {
         className={errors.description ? 'input-error' : ''}
       />
 
-      <input type="button" className ="list-button" value="List Item" onClick={submitForm} />
+      <input
+        type="button"
+        className="list-button"
+        value="List Item"
+        onClick={submitForm}
+      />
     </form>
   )
 }

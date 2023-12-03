@@ -46,7 +46,7 @@ async function findItemById(itemId) {
 
 async function findUserById(userId) {
   try {
-    return await User.findById(userId)
+    return await User.findById(new mongoose.Types.ObjectId(userId))
   } catch (error) {
     console.log(error)
     return undefined
