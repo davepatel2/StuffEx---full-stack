@@ -209,6 +209,16 @@ app.patch('/users/:sellerId/items/:itemId', async (req, res) => {
     })
 })
 
+app.get('/users/usernames/:username', async (req, res) => {
+  const { username } = req.params
+
+  const user = await Database.findUserByUsername(username)
+
+  const statusCode = user === undefined ? 404 : 200
+
+  res.status(statusCode).send(user)
+})
+
 app.listen(process.env.PORT || port, () => {
   console.log('REST API is listening.')
 })

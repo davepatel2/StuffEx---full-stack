@@ -8,6 +8,10 @@ This doc outlines what each endpoint in `server.js` does, and how to use it.
 
 Returns a list of all users in the database.
 
+### GET `/users/usernames/:username`
+
+Return a specific user's data. The `username` path variable is the username.
+
 ### POST `/users`
 
 Creates a new user in the database. In the POST body, pass an object meeting the requirements in the `user_schema.js` file. `username` is the only required field.
