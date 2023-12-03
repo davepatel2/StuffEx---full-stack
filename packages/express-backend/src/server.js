@@ -42,7 +42,7 @@ app.get('/users/:id', async (req, res) => {
   const user = await Database.findUserById(id)
 
   const statusCode = user === undefined ? 404 : 200
-
+  console.log(user)
   res.status(statusCode).send(user || {})
 })
 

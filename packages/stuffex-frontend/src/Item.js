@@ -39,9 +39,7 @@ function ItemBody(props) {
     const itemUrl = `/item/${item._id}`
 
     return (
-      
       <div className="item-style" key={itemIndex}>
-        
         <div className="image-navigation">
           <div className="button-container">
             {showNavigationButtons && (
@@ -67,11 +65,10 @@ function ItemBody(props) {
         </div>
         <div className="line-style" />
         <Link to={itemUrl}>
-        <div className="item-title">{item.title}</div>
+          <div className="item-title">{item.title}</div>
         </Link>
         <div className="item-description">{item.description}</div>
       </div>
-    
     )
   })
 
@@ -79,19 +76,19 @@ function ItemBody(props) {
 }
 
 function SearchBar(props) {
-  const searchBarInput = useRef(null);
+  const searchBarInput = useRef(null)
 
-  const handleSearch = () => props.updateItems(searchBarInput.current.value);
+  const handleSearch = () => props.updateItems(searchBarInput.current.value)
   const restoreItems = () => {
-    searchBarInput.current.value = ''; // Clear the input value
-    props.updateItems();
-  };
+    searchBarInput.current.value = '' // Clear the input value
+    props.updateItems()
+  }
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      handleSearch();
+      handleSearch()
     }
-  };
+  }
 
   return (
     <div className="search-bar">
@@ -106,7 +103,7 @@ function SearchBar(props) {
         X
       </button>
     </div>
-  );
+  )
 }
 
 function Item(props) {

@@ -1,6 +1,6 @@
 // About.js
-import React from 'react';
-import './About.css'; // Import the CSS file
+import React from 'react'
+import './About.css' // Import the CSS file
 
 const About = () => {
   return (
@@ -13,7 +13,7 @@ const About = () => {
         free items. We aren't connecting sellers to buyers but people to people.
       </p>
     </div>
-  );
+  )
 }
 
-export default About;
+export default About
