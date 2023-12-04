@@ -72,9 +72,11 @@ async function findUserById(userId) {
 async function createUser(user) {
   try {
     const { username } = user
-    if (findUserByUsername(username)) {
+
+    if (await findUserByUsername(username)) {
       throw new Error(`User with username ${username} already exists.`)
     }
+
     const userToAdd = new User(user)
     const savedUser = await userToAdd.save()
     return removePasswordField(savedUser.toObject())
