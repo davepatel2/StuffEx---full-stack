@@ -50,7 +50,7 @@ Gets a list of the items a particular user has posted.
 
 Creates a new listing from a user. The post body should contain an object meeting the requirements in the item schema. `title` and `description` are the only required fields.
 
-### GET ` /users/:userId/items-bought`
+### GET `/users/:userId/items-bought`
 
 Retrieves a list of items that a specific user has bought. Use the `userId` path variable to specify which user's purchased items you want to see. For example,
 `/users/abc/items-bought` to see items bought by the user with ID `abc`.
@@ -58,3 +58,11 @@ Retrieves a list of items that a specific user has bought. Use the `userId` path
 ### PATCH `/users/:sellerId/items/:itemId`
 
 Updates the buyer details for a specific item and adds it to the buyer's list of purchased items. This endpoint requires the `sellerId`and `itemId` path variables, where `sellerId` is the ID of the user selling the item and `itemId` is the ID of the item being purchased. The request body must include `buyerId`, which is the ID of the user buying the item.
+
+## Authentication
+
+### POST `/login`
+
+Request body should contain a `username` and `password` field. If the fields match, the server returns a JSON object with a `token` field containing a JWT used for authentication and a `userId` field containing the user id of the authenticated user.
+
+Non-GET endpoints require an `authorization` header. The header should be formatted as `Token <token>`, for example `Token 2783tgyu242ygf.287tyruh2f.328r7guh2i`.
