@@ -71,7 +71,7 @@ function loginUser(req, res, user) {
   bcrypt.compare(password, user.hashed_password).then((matched) => {
     if (matched) {
       generateAccessToken(username, user._id).then((token) =>
-        res.status(200).send({ token: token })
+        res.status(200).send({ token: token, userId: user._id })
       )
     } else {
       // Invalid password

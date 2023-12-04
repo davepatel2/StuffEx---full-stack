@@ -1,11 +1,20 @@
 import { backendRoot } from '../AppConfig'
 
 const getSessionToken = () => localStorage.getItem('token')
+const getSessionUserId = () => localStorage.getItem('userId')
 
 const setSessionToken = (token) => localStorage.setItem('token', token)
+const setSessionUserId = (userId) => localStorage.setItem('userId', userId)
+
+function getSessionCredentials() {
+  return {
+    token: getSessionToken(),
+    userId: getSessionUserId(),
+  }
+}
 
 function isLoggedIn() {
-  return getSessionToken() !== null
+  return getSessionToken() && getSessionUserId()
 }
 
 function login(userCredentials) {
@@ -20,9 +29,11 @@ function login(userCredentials) {
       body: JSON.stringify(userCredentials),
     })
       .then((res) => res.json())
-      .then((data) => data.token)
-      .then((token) => {
+      .then((data) => {
+        const { token, userId } = data
         setSessionToken(token)
+        setSessionUserId(userId)
+
         resolve()
       })
       .catch((error) => {
@@ -34,6 +45,7 @@ function login(userCredentials) {
 const exports = {
   login,
   isLoggedIn,
+  getSessionCredentials,
 }
 
 export default exports
