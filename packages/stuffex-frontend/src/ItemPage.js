@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import noImage from './images/no_image.png'
 import { Link } from 'react-router-dom'
+import Authentication from './authentication/Authentication.js'
 import './ItemPage.css'
 import './UserPage.js'
+import AddToWishlistButton from './components/WishlistButton.js'
 
-function ItemPage(props) {
+function ItemPage({ backendRoot }) {
   // Get the itemId from the URL parameters
   const { itemId } = useParams()
 
@@ -14,9 +16,6 @@ function ItemPage(props) {
   const [user, setUser] = useState([])
   const [currentImageIndex, setCurrentImageIndex] = useState(0) // Index of the currently displayed image
   const [isModalOpen, setIsModalOpen] = useState(false) // Boolean to control modal visibility
-
-  // Backend root URL
-  const backendRoot = props.backendRoot
 
   // Fetch item data from the backend when the component mounts
   useEffect(() => {
@@ -66,6 +65,14 @@ function ItemPage(props) {
     <div>
       <h1>{item.title}</h1>
       <Link to={`/users/${user._id}`}>{user.username}</Link>
+      {
+        // if the user is logged in, show a button to add to their wishlist
+        Authentication.isLoggedIn() ? (
+          <AddToWishlistButton itemId={itemId} showWishlistLength={true} />
+        ) : (
+          <></>
+        )
+      }
       <div className="image-navigation center-content">
         {item.images && item.images.length > 0 ? (
           <>

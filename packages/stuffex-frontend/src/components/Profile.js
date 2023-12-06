@@ -9,6 +9,7 @@ function Profile(props) {
     username: '',
     email: '',
     phone: '',
+    password: '',
   })
 
   // State for managing form validation errors
@@ -21,6 +22,12 @@ function Profile(props) {
     if (!user.username.trim()) {
       newErrors.username = true
     }
+
+    // Similarly check if password is empty
+    if (!user.password.trim()) {
+      newErrors.password = true
+    }
+
     return newErrors
   }
 
@@ -29,11 +36,12 @@ function Profile(props) {
     const profErrors = validateProf()
     // If no errors, submit the form and reset the state
     if (Object.keys(profErrors).length === 0) {
+      console.log(user)
       props.handleProfile(user)
-      setUser({ title: '', email: '', phone: '' })
-
-      setErrors(profErrors)
+      setUser({ username: '', email: '', phone: '', password: '' })
     }
+
+    setErrors(profErrors)
   }
 
   // Function to handle changes in profile inputs
@@ -81,6 +89,16 @@ function Profile(props) {
         value={user.phone}
         onChange={handleChange}
         className={errors.phone ? 'input-error' : ''}
+      />
+
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        value={user.password}
+        onChange={handleChange}
+        className={errors.password ? 'input-error' : ''}
       />
 
       <input type="button" value="Create Profile" onClick={createProf} />

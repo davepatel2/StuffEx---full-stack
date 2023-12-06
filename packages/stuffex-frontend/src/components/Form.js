@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react'
 import './form.css'
 
 // Functional component Form with props passed from parent component
-function Form(props) {
+function Form({ handleSubmit }) {
   // State for managing form data
   const [item, setItem] = useState({
     title: '',
@@ -36,7 +36,7 @@ function Form(props) {
     const formErrors = validateForm()
     // If no errors, submit the form and reset the state
     if (Object.keys(formErrors).length === 0) {
-      props.handleSubmit(item)
+      handleSubmit(item)
       setItem({ title: '', images: [], description: '' })
       if (fileInputRef.current) {
         fileInputRef.current.value = ''

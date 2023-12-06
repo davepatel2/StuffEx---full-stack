@@ -17,6 +17,20 @@ mongoose
   })
   .catch((error) => console.log(error))
 
+function removePasswordField(user_object) {
+  const skippedKeys = new Set(['hashed_password'])
+  const result = {}
+  Object.keys(user_object).forEach((key) => {
+    if (skippedKeys.has(key)) {
+      return
+    }
+
+    result[key] = user_object[key]
+  })
+
+  return result
+}
+
 async function getItems() {
   try {
     return await Item.find()
@@ -28,7 +42,9 @@ async function getItems() {
 
 async function getUsers() {
   try {
-    return await User.find()
+    return (await User.find())
+      .map((user) => user.toObject())
+      .map(removePasswordField)
   } catch (error) {
     console.log(error)
     return undefined
@@ -46,7 +62,7 @@ async function findItemById(itemId) {
 
 async function findUserById(userId) {
   try {
-    return await User.findById(new mongoose.Types.ObjectId(userId))
+    return removePasswordField((await User.findById(userId)).toObject())
   } catch (error) {
     console.log(error)
     return undefined
@@ -55,9 +71,15 @@ async function findUserById(userId) {
 
 async function createUser(user) {
   try {
+    const { username } = user
+
+    if (await findUserByUsername(username)) {
+      throw new Error(`User with username ${username} already exists.`)
+    }
+
     const userToAdd = new User(user)
     const savedUser = await userToAdd.save()
-    return savedUser
+    return removePasswordField(savedUser.toObject())
   } catch (error) {
     console.log(error)
     return undefined
@@ -75,7 +97,7 @@ async function createItem(item, uid) {
     item.seller_id = userId
 
     const itemToAdd = new Item(item)
-    const itemCreator = await findUserById(userId)
+    const itemCreator = await User.findById(userId)
     const savedItem = await itemToAdd.save()
 
     itemCreator.items_sold.push(savedItem.id)
@@ -95,7 +117,7 @@ async function updateItemBuyerAndAddToUserBought(itemId, buyerId) {
       throw new Error('Item not found')
     }
 
-    const buyer = await findUserById(buyerId)
+    const buyer = await User.findById(buyerId)
     if (!buyer) {
       throw new Error('Buyer not found')
     }
@@ -131,7 +153,7 @@ async function deleteItem(itemId) {
 
 async function findItemsByUserId(userId) {
   try {
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
     await user.populate('items_sold')
     return user.items_sold
   } catch (error) {
@@ -142,7 +164,7 @@ async function findItemsByUserId(userId) {
 
 async function findBoughtItemsByUserId(userId) {
   try {
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
     await user.populate('items_bought')
     return user.items_bought
   } catch (error) {
@@ -153,7 +175,7 @@ async function findBoughtItemsByUserId(userId) {
 
 async function getWishlist(userId) {
   try {
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
     await user.populate('wishlist')
     return user.wishlist
   } catch (error) {
@@ -165,7 +187,7 @@ async function getWishlist(userId) {
 async function addToWishList(userId, itemId) {
   try {
     const item = await findItemById(itemId)
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
 
     if (item === undefined || user === undefined) {
       throw new Error('Item or User not found')
@@ -188,7 +210,7 @@ async function addToWishList(userId, itemId) {
 async function removeFromWishList(userId, itemId) {
   try {
     const item = await findItemById(itemId)
-    const user = await findUserById(userId)
+    const user = await User.findById(userId)
 
     if (item === undefined || user === undefined) {
       throw new Error('Item or User not found')
@@ -201,6 +223,20 @@ async function removeFromWishList(userId, itemId) {
     user.save()
   } catch (error) {
     console.log(error)
+  }
+}
+
+async function findUserByUsername(username) {
+  try {
+    const user = await User.findOne({ username: username }).exec()
+    if (!user) {
+      throw new Error(`Username "${username}" not found`)
+    }
+
+    return user
+  } catch (error) {
+    console.log(error)
+    return undefined
   }
 }
 
@@ -219,4 +255,5 @@ export default {
   getWishlist,
   addToWishList,
   removeFromWishList,
+  findUserByUsername,
 }
