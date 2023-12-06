@@ -68,7 +68,7 @@ function ItemPage({ backendRoot }) {
       {
         // if the user is logged in, show a button to add to their wishlist
         Authentication.isLoggedIn() ? (
-          <AddToWishlistButton itemId={itemId} showWishlistLength={true} />
+          <AddToWishlistButton item={item} showWishlistLength={true} />
         ) : (
           <></>
         )

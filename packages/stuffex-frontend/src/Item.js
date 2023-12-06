@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import noImage from './images/no_image.png'
 import './Item.css'
 import Authentication from './authentication/Authentication'
-import AddToWishlistButton from './components/WishlistButton'
+import WishlistButton from './components/WishlistButton'
 
 function ItemHeader({ title }) {
   return <div className="item-header">{title}</div>
@@ -70,11 +70,7 @@ function ItemBody(props) {
           <div className="item-title">{item.title}</div>
         </Link>
         <div className="item-description">{item.description}</div>
-        {Authentication.isLoggedIn() ? (
-          <AddToWishlistButton itemId={item._id} />
-        ) : (
-          <></>
-        )}
+        {Authentication.isLoggedIn() ? <WishlistButton item={item} /> : <></>}
       </div>
     )
   })

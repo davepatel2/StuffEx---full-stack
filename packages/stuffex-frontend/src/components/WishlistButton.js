@@ -54,7 +54,7 @@ function WishlistButton({ itemId, showWishlistLength }) {
 
   return (
     <div>
-      <button style={{}} onClick={toggleWishlist}>
+      <button onClick={toggleWishlist}>
         {userIsInterested ? 'Remove from Wishlist' : 'Add to Wishlist'}
         {showWishlistLength ? ` (${userWishlist.length} items)` : <></>}
       </button>
@@ -62,4 +62,32 @@ function WishlistButton({ itemId, showWishlistLength }) {
   )
 }
 
-export default WishlistButton
+function SellItemButton() {
+  function handleSell() {
+    alert('unimplemented')
+  }
+
+  return (
+    <div>
+      <button onClick={handleSell}>Mark as Sold</button>
+    </div>
+  )
+}
+
+function WishlistButtonWrapper({ item, showWishlistLength }) {
+  // Determine if the itemId is owned by the signed-in user
+  if (!Authentication.isLoggedIn()) {
+    return <></>
+  }
+
+  const { _id: itemId, seller_id: sellerId } = item
+  const { userId } = Authentication.getSessionCredentials() || 'no-user-id'
+
+  return userId === (sellerId || 'no-seller-id') ? (
+    <SellItemButton />
+  ) : (
+    <WishlistButton itemId={itemId} showWishlistLength={showWishlistLength} />
+  )
+}
+
+export default WishlistButtonWrapper
