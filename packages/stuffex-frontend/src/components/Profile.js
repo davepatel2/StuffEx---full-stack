@@ -1,6 +1,7 @@
 // Importing necessary React hooks and CSS for the form
 import React, { useState } from 'react'
 import './form.css'
+import { Link } from 'react-router-dom'
 
 // Functional component Form with props passed from parent component
 function Profile(props) {
@@ -14,7 +15,12 @@ function Profile(props) {
 
   // State for managing form validation errors
   const [errors, setErrors] = useState({})
-
+  const [isTyping, setIsTyping] = useState({
+    username: false,
+    password: false,
+    email: false,
+    phone: false
+  });
   // Function to validate profile data
   function validateProf() {
     const newErrors = {}
@@ -56,52 +62,58 @@ function Profile(props) {
     if (errors[name]) {
       setErrors((prevErrors) => ({ ...prevErrors, [name]: false }))
     }
+
+    setIsTyping((prevIsTyping) => ({
+      ...prevIsTyping,
+      [name]: value.length > 0,
+    }));
   }
 
   // Render the form with input fields and handling errors
   return (
     <form>
-      <label htmlFor="username">Username</label>
       <input
-        type="text"
+        type="credentials"
         name="username"
         id="username"
         value={user.username}
         onChange={handleChange}
+        placeholder={isTyping.username ? '' : 'Enter Username'}
         className={errors.username ? 'input-error' : ''}
       />
 
-      <label htmlFor="email">Email</label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        value={user.email}
-        onChange={handleChange}
-        className={errors.email ? 'input-error' : ''}
-      />
-
-      <label htmlFor="phone">Phone Number</label>
-      <input
-        type="text"
-        name="phone"
-        id="phone"
-        value={user.phone}
-        onChange={handleChange}
-        className={errors.phone ? 'input-error' : ''}
-      />
-
-      <label htmlFor="password">Password</label>
       <input
         type="password"
         name="password"
         id="password"
         value={user.password}
         onChange={handleChange}
+        placeholder={isTyping.password ? '' : 'Enter Password'}
         className={errors.password ? 'input-error' : ''}
       />
 
+      <input
+        type="credentials"
+        name="email"
+        id="email"
+        value={user.email}
+        onChange={handleChange}
+        placeholder={isTyping.email ? '' : 'Email'}
+        className={errors.email ? 'input-error' : ''}
+      />
+
+      <input
+        type="credentials"
+        name="phone"
+        id="phone"
+        value={user.phone}
+        onChange={handleChange}
+        placeholder={isTyping.phone ? '' : 'Phone'}
+        className={errors.phone ? 'input-error' : ''}
+      />
+
       <input type="button" value="Create Profile" onClick={createProf} />
+      <Link to="/login" className="back-button">&#60;- Back </Link>
     </form>
   )
 }

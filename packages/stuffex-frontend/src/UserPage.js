@@ -35,15 +35,15 @@ function UserPage(props) {
         <img src={userImage} className="profile-image" alt="Profile" />
       </h2>
       <h2>{user.username}</h2>
-      <p>{/* Additional content goes here */}</p>
+      <p>{}</p>
       <div className="box-with-link">
         <Link to={`/users/${userId}/items`}>Previous Listings</Link>
       </div>
       <div className="box-with-link">
-        <Link to={`/users/${userId}/wishlist`}>Wishlisted Items</Link>
+        <Link to={`/users/${userId}/wishlist`}>Wishlist</Link>
       </div>
       <div className="box-with-link">
-        <Link to={`/users/${userId}/items_bought`}>Recived Items</Link>
+        <Link to={`/users/${userId}/items_bought`}>Received Items</Link>
       </div>
     </div>
   )

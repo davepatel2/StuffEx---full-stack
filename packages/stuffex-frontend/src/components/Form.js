@@ -11,6 +11,11 @@ function Form({ handleSubmit }) {
     description: '',
   })
 
+  const [isTyping, setIsTyping] = useState({
+    title: false,
+    description: false,
+  });
+
   // State for managing form validation errors
   const [errors, setErrors] = useState({})
 
@@ -58,6 +63,11 @@ function Form({ handleSubmit }) {
     if (errors[name]) {
       setErrors((prevErrors) => ({ ...prevErrors, [name]: false }))
     }
+
+    setIsTyping((prevIsTyping) => ({
+      ...prevIsTyping,
+      [name]: value.length > 0,
+    }));
   }
 
   // Function to handle image file selection and read as data URL
@@ -88,13 +98,13 @@ function Form({ handleSubmit }) {
   // Render the form with input fields and handling errors
   return (
     <form>
-      <label htmlFor="title">Title:</label>
       <input
         type="text"
         name="title"
         id="title"
         value={item.title}
         onChange={handleChange}
+        placeholder={isTyping.title ? '' : 'Title'}
         className={errors.title ? 'input-error' : ''}
       />
 
@@ -127,13 +137,13 @@ function Form({ handleSubmit }) {
         ))}
       </div>
 
-      <label htmlFor="description">Description:</label>
       <textarea
         name="description"
         id="description"
         value={item.description}
         onChange={handleChange}
         rows={4}
+        placeholder={isTyping.description ? '' : 'Description'}
         className={errors.description ? 'input-error' : ''}
       />
 

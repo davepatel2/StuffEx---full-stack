@@ -1,51 +1,62 @@
-import React, { useState } from 'react'
-import './form.css'
-import Authentication from '../authentication/Authentication'
+import React, { useState } from 'react';
+import './form.css';
+import Authentication from '../authentication/Authentication';
+import { Link } from 'react-router-dom'
 
 function Login() {
-  // State for managing form data
+  // State for managing form data and tracking typing status
   const [userCredentials, setUserCredentials] = useState({
     username: '',
     password: '',
-  })
+  });
+  const [isTyping, setIsTyping] = useState({
+    username: false,
+    password: false,
+  });
 
-  // Update user object
+  // Update user object and set typing status
   function handleChange(event) {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
     setUserCredentials((prevState) => ({
       ...prevState,
       [name]: value,
-    }))
+    }));
+
+    setIsTyping((prevIsTyping) => ({
+      ...prevIsTyping,
+      [name]: value.length > 0,
+    }));
   }
 
   function callLogin() {
     Authentication.login(userCredentials)
       .then(() => console.log('Successfully logged in'))
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error));
+    
   }
 
   return (
     <form>
-      <label htmlFor="username">Username</label>
       <input
-        type="text"
+        type="credentials"
         name="username"
         value={userCredentials.username}
         onChange={handleChange}
+        placeholder={isTyping.username ? '' : 'Username'}
       />
 
-      <label htmlFor="password">Password</label>
       <input
         type="password"
         name="password"
         value={userCredentials.password}
         onChange={handleChange}
+        placeholder={isTyping.password ? '' : 'Password'}
       />
-
       <input type="button" value="Log In" onClick={callLogin} />
+      <p className="create-account-text">New User? <Link to="/Profile" className="create-account-link">Create Account</Link></p>
     </form>
-  )
+  );
 }
 
-export default Login
+export default Login;
