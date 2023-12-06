@@ -6,6 +6,9 @@ const getSessionUserId = () => localStorage.getItem('userId')
 const setSessionToken = (token) => localStorage.setItem('token', token)
 const setSessionUserId = (userId) => localStorage.setItem('userId', userId)
 
+/**
+ * @returns \{ token: sessionToken, userId: sessionUserId \}
+ */
 function getSessionCredentials() {
   return {
     token: getSessionToken(),
@@ -13,10 +16,18 @@ function getSessionCredentials() {
   }
 }
 
+/**
+ * @returns true if the user is logged in, false otherwise
+ */
 function isLoggedIn() {
   return getSessionToken() && getSessionUserId()
 }
 
+/**
+ *
+ * @param {object} userCredentials `username` and `password` fields.
+ * @returns A promise that resolves on successful login
+ */
 function login(userCredentials) {
   const endpoint = `${backendRoot}/login`
 
@@ -42,10 +53,30 @@ function login(userCredentials) {
   })
 }
 
+/**
+ * @returns A promise that resolves with a user object for the current user.
+ */
+const getCurrentUser = () =>
+  new Promise((resolve, reject) => {
+    if (!isLoggedIn()) {
+      reject('User is not logged in.')
+      return
+    }
+
+    const endpoint = `${backendRoot}/users/${getSessionUserId()}`
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        resolve(data)
+      })
+      .catch((e) => reject(e))
+  })
+
 const exports = {
   login,
   isLoggedIn,
   getSessionCredentials,
+  getCurrentUser,
 }
 
 export default exports
