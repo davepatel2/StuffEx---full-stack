@@ -89,6 +89,11 @@ function loginUser(req, res, user) {
 function authenticateUser(req, targetUserId) {
   return new Promise((resolve, reject) => {
     const authHeader = req.headers['authorization']
+
+    if (!authHeader) {
+      reject({ statusCode: 401, message: 'No "authorization" header provided' })
+    }
+
     const [authType, token] = authHeader && authHeader.split(' ')
 
     if (authType !== 'Token') {

@@ -13,6 +13,7 @@ import UserWishlistItems from './UserWishlistItems'
 import UserBoughtItems from './UserBoughtItems'
 import UserPage from './UserPage'
 import Login from './components/Login'
+import Authentication from './authentication/Authentication'
 
 import { backendRoot } from './AppConfig'
 
@@ -59,17 +60,24 @@ function MyApp() {
   }
 
   function postItem(item) {
-    const promise = fetch(
-      `${backendRoot}/users/6551b42036f9e0bfd4503186/items`,
-      {
+    return new Promise((resolve, reject) => {
+      if (!Authentication.isLoggedIn()) {
+        reject('Sign in before posting an item')
+      }
+
+      const { token, userId } = Authentication.getSessionCredentials()
+
+      fetch(`${backendRoot}/users/${userId}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization: `Token ${token}`,
         },
         body: JSON.stringify(item),
-      }
-    )
-    return promise
+      })
+        .then((res) => console.log(res))
+        .catch((e) => reject(e))
+    })
   }
 
   function postUser(user) {

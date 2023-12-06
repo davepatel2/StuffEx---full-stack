@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import noImage from './images/no_image.png'
 import './Item.css'
 import Authentication from './authentication/Authentication'
-import AddToWishlistButton from './components/AddToWishlistButton'
+import AddToWishlistButton from './components/WishlistButton'
 
 function ItemHeader({ title }) {
   return <div className="item-header">{title}</div>

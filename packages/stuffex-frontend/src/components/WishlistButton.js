@@ -3,7 +3,7 @@ import { backendRoot } from '../AppConfig'
 import Authentication from '../authentication/Authentication'
 import './WishlistButton.css'
 
-function AddToWishlistButton({ itemId, showWishlistLength }) {
+function WishlistButton({ itemId, showWishlistLength }) {
   // States to hold wishlist information
   const [userIsInterested, setUserIsInterested] = useState(false)
   const [userWishlist, setUserWishlist] = useState([])
@@ -62,4 +62,4 @@ function AddToWishlistButton({ itemId, showWishlistLength }) {
   )
 }
 
-export default AddToWishlistButton
+export default WishlistButton

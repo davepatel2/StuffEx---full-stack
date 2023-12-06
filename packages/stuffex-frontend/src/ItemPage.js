@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Authentication from './authentication/Authentication.js'
 import './ItemPage.css'
 import './UserPage.js'
-import AddToWishlistButton from './components/AddToWishlistButton.js'
+import AddToWishlistButton from './components/WishlistButton.js'
 
 function ItemPage({ backendRoot }) {
   // Get the itemId from the URL parameters
