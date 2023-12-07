@@ -19,8 +19,8 @@ function Profile(props) {
     username: false,
     password: false,
     email: false,
-    phone: false
-  });
+    phone: false,
+  })
   // Function to validate profile data
   function validateProf() {
     const newErrors = {}
@@ -66,7 +66,7 @@ function Profile(props) {
     setIsTyping((prevIsTyping) => ({
       ...prevIsTyping,
       [name]: value.length > 0,
-    }));
+    }))
   }
 
   // Render the form with input fields and handling errors
@@ -113,7 +113,9 @@ function Profile(props) {
       />
 
       <input type="button" value="Create Profile" onClick={createProf} />
-      <Link to="/login" className="back-button">&#60;- Back </Link>
+      <Link to="/login" className="back-button">
+        &#60;- Back{' '}
+      </Link>
     </form>
   )
 }

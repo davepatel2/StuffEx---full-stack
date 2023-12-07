@@ -14,7 +14,7 @@ function Form({ handleSubmit }) {
   const [isTyping, setIsTyping] = useState({
     title: false,
     description: false,
-  });
+  })
 
   // State for managing form validation errors
   const [errors, setErrors] = useState({})
@@ -67,7 +67,7 @@ function Form({ handleSubmit }) {
     setIsTyping((prevIsTyping) => ({
       ...prevIsTyping,
       [name]: value.length > 0,
-    }));
+    }))
   }
 
   // Function to handle image file selection and read as data URL
