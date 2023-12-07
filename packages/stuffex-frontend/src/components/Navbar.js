@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'; 
 import Logo from '../images/logo.png'
 import User from '../images/profile.png'
 import { Link } from 'react-router-dom'
@@ -10,9 +10,20 @@ const Navbar = (props) => {
     props.updateItems()
   }
 
-  const isLoggedIn = Authentication.isLoggedIn()
   // const id = Authentication.getCurrentUser()._id
+  const [isLoggedIn, setIsLoggedIn] = useState(Authentication.isLoggedIn());
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsLoggedIn(Authentication.isLoggedIn());
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+  
   return (
     <nav className="navbar-style">
       <div className="navbar-content-style">
