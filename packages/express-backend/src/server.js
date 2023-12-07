@@ -111,6 +111,14 @@ app.get('/users/:userId/wishlist', async (req, res) => {
   res.status(statusCode).send(wishlist || [])
 })
 
+app.get('/items/:itemId/interested', async (req, res) => {
+  const itemId = req.params.itemId
+  const interestedUsers = await Database.getItemInterestedUsers(itemId)
+  const statusCode = interestedUsers === undefined ? 500 : 200
+
+  res.status(statusCode).send(interestedUsers || [])
+})
+
 app.put('/users/:userId/wishlist/:itemId', async (req, res) => {
   const userId = req.params.userId
 
@@ -188,6 +196,8 @@ app.patch('/users/:sellerId/items/:itemId', async (req, res) => {
     .then(async () => {
       const itemId = req.params.itemId
       const buyerId = req.body.buyerId
+
+      console.log(req.body)
 
       if (!buyerId) {
         return res.status(400).send({ error: 'buyerId is required' })
