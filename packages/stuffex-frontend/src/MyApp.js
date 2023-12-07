@@ -15,6 +15,7 @@ import UserBoughtItems from './UserBoughtItems'
 import UserPage from './UserPage'
 import Login from './components/Login'
 import Authentication from './authentication/Authentication'
+import Footer from './components/Footer'
 
 import { backendRoot } from './AppConfig'
 
@@ -146,6 +147,7 @@ function MyApp() {
           />
           <Route path="/login" element={<Login />} />
         </Routes>
+        <Footer />
         {/* <Item itemData={items} />
         <Form handleSubmit={updateList} /> */}
       </div>

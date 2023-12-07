@@ -30,6 +30,11 @@ function Profile(props) {
     }
 
     // Similarly check if password is empty
+    if (!user.email.trim()) {
+      newErrors.email = true
+    }
+
+    // Similarly check if password is empty
     if (!user.password.trim()) {
       newErrors.password = true
     }
