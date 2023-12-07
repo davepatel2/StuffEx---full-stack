@@ -1,5 +1,7 @@
 // Importing necessary React hooks and CSS for the form
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Authentication from '../authentication/Authentication'
 import './form.css'
 
 // Functional component Form with props passed from parent component
@@ -21,6 +23,14 @@ function Form({ handleSubmit }) {
 
   // Reference to the file input for managing file uploads
   const fileInputRef = useRef(null)
+
+  const nav = useNavigate()
+
+  useEffect(() => {
+    if (!Authentication.isLoggedIn()) {
+      nav('/login')
+    }
+  })
 
   // Function to validate form data
   function validateForm() {
