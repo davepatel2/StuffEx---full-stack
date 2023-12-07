@@ -246,6 +246,22 @@ async function findUserByUsername(username) {
   }
 }
 
+async function getItemInterestedUsers(itemId) {
+  try {
+    const item = await Item.findById(itemId)
+    if (!item) {
+      throw new Error(`Item ${itemId} not found`)
+    }
+
+    await item.populate('interested_users')
+
+    return item.interested_users
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
+
 export default {
   getItems,
   getUsers,
@@ -262,4 +278,5 @@ export default {
   addToWishList,
   removeFromWishList,
   findUserByUsername,
+  getItemInterestedUsers,
 }
