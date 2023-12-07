@@ -197,8 +197,11 @@ async function addToWishList(userId, itemId) {
       return user.wishlist
     }
 
+    item.interested_users.push(user._id)
+
     user.wishlist.push(item._id)
     user.save()
+    item.save()
 
     return user.wishlist
   } catch (error) {
@@ -216,11 +219,14 @@ async function removeFromWishList(userId, itemId) {
       throw new Error('Item or User not found')
     }
 
-    user.wishlist = user.wishlist.filter((itemId) => {
-      return !item._id.equals(itemId)
-    })
+    user.wishlist = user.wishlist.filter((itemId) => !item._id.equals(itemId))
+
+    item.interested_users = item.interested_users.filter(
+      (userId) => !user._id.equals(userId)
+    )
 
     user.save()
+    item.save()
   } catch (error) {
     console.log(error)
   }

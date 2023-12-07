@@ -9,7 +9,8 @@ const itemSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
-  buyer_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // optional reference to User
+  buyer_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // optional reference to User,
+  interested_users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 })
 
 const Item = mongoose.model('Item', itemSchema)
