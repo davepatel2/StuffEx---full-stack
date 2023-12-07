@@ -68,16 +68,22 @@ function extractToken(req, res) {
 function loginUser(req, res, user) {
   const { username, password } = req.body
 
-  bcrypt.compare(password, user.hashed_password).then((matched) => {
-    if (matched) {
-      generateAccessToken(username, user._id).then((token) =>
-        res.status(200).send({ token: token, userId: user._id })
-      )
-    } else {
-      // Invalid password
-      res.status(401).end()
-    }
-  })
+  if (!password) {
+    res.status(400).end()
+  } else if (!user.hashed_password) {
+    res.status(500).end()
+  } else {
+    bcrypt.compare(password, user.hashed_password).then((matched) => {
+      if (matched) {
+        generateAccessToken(username, user._id).then((token) =>
+          res.status(200).send({ token: token, userId: user._id })
+        )
+      } else {
+        // Invalid password
+        res.status(401).end()
+      }
+    })
+  }
 }
 
 /**
