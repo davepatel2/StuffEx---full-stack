@@ -7,6 +7,7 @@ import Form from './components/Form'
 import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import About from './components/About'
+import Test from './components/Test'
 import ItemPage from './ItemPage'
 import UserSellingItems from './UserSellingItems'
 import UserWishlistItems from './UserWishlistItems'
@@ -118,6 +119,7 @@ function MyApp() {
           />
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Test" element={<Test />} />
           <Route
             path="/Profile"
             element={<Profile handleProfile={updateUser} />}

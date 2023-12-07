@@ -6,6 +6,7 @@ const getSessionUserId = () => localStorage.getItem('userId')
 const setSessionToken = (token) => localStorage.setItem('token', token)
 const setSessionUserId = (userId) => localStorage.setItem('userId', userId)
 
+
 /**
  * @returns \{ token: sessionToken, userId: sessionUserId \}
  */
@@ -53,6 +54,11 @@ function login(userCredentials) {
   })
 }
 
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userId');
+}
+
 /**
  * @returns A promise that resolves with a user object for the current user.
  */
@@ -72,8 +78,10 @@ const getCurrentUser = () =>
       .catch((e) => reject(e))
   })
 
+  
 const exports = {
   login,
+  logout,
   isLoggedIn,
   getSessionCredentials,
   getCurrentUser,
