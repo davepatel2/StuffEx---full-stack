@@ -1,4 +1,4 @@
-const backendRoot = 'http://localhost:8000'
+const backendRoot = 'https://stuffex.azurewebsites.net/'
 const passwordHashStrength = 10
 
 export { backendRoot, passwordHashStrength }
