@@ -1,6 +1,5 @@
 // src/MyApp.js
 
-import Item from './Item'
 import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Form from './components/Form'
@@ -15,6 +14,7 @@ import UserBoughtItems from './UserBoughtItems'
 import UserPage from './UserPage'
 import Login from './components/Login'
 import Authentication from './authentication/Authentication'
+import HomePage from './components/HomePage'
 
 import { backendRoot } from './AppConfig'
 
@@ -120,7 +120,7 @@ function MyApp() {
         <Routes>
           <Route
             path="/"
-            element={<Item itemData={items} updateItems={populateItems} />}
+            element={<HomePage items={items} populateItems={populateItems} />}
           />
           <Route path="/Form" element={<Form handleSubmit={updateList} />} />
           <Route path="/About" element={<About />} />
