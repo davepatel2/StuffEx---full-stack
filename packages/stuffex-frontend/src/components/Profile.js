@@ -1,10 +1,13 @@
 // Importing necessary React hooks and CSS for the form
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './form.css'
 import { Link } from 'react-router-dom'
 
 // Functional component Form with props passed from parent component
 function Profile(props) {
+  const nav = useNavigate()
+
   // State for managing form data
   const [user, setUser] = useState({
     username: '',
@@ -30,7 +33,7 @@ function Profile(props) {
     }
 
     // Similarly check if password is empty
-    if (!user.email.trim()) {
+    if (!user.email.trim() && !user.phone.trim()) {
       newErrors.email = true
     }
 
@@ -49,7 +52,7 @@ function Profile(props) {
     if (Object.keys(profErrors).length === 0) {
       console.log(user)
       props.handleProfile(user)
-      setUser({ username: '', email: '', phone: '', password: '' })
+      nav('/login')
     }
 
     setErrors(profErrors)

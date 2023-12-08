@@ -17,7 +17,11 @@ function HomePage({ items, populateItems }) {
     checkUsername()
   }, [])
 
-  const greetingHeader = username ? <h1 style={{textAlign: 'center'}}>Hey there, {username}</h1> : <></>
+  const greetingHeader = username ? (
+    <h1 style={{ textAlign: 'center' }}>Hey there, {username}</h1>
+  ) : (
+    <></>
+  )
 
   return (
     <>

@@ -1,5 +1,5 @@
-import React from 'react';
-import './Footer.css'; // Import your CSS file for styling
+import React from 'react'
+import './Footer.css' // Import your CSS file for styling
 
 function Footer() {
   return (
@@ -8,7 +8,7 @@ function Footer() {
         <p>&copy; 2023 StuffEX. All rights reserved.</p>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
