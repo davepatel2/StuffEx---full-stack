@@ -2,9 +2,12 @@ import { backendRoot } from '../AppConfig'
 
 const getSessionToken = () => localStorage.getItem('token')
 const getSessionUserId = () => localStorage.getItem('userId')
+const getSessionUsername = () => localStorage.getItem('username')
 
 const setSessionToken = (token) => localStorage.setItem('token', token)
 const setSessionUserId = (userId) => localStorage.setItem('userId', userId)
+const setSessionUsername = (username) =>
+  localStorage.setItem('username', username)
 
 /**
  * @returns \{ token: sessionToken, userId: sessionUserId \}
@@ -13,6 +16,7 @@ function getSessionCredentials() {
   return {
     token: getSessionToken(),
     userId: getSessionUserId(),
+    username: getSessionUsername(),
   }
 }
 
@@ -20,7 +24,7 @@ function getSessionCredentials() {
  * @returns true if the user is logged in, false otherwise
  */
 function isLoggedIn() {
-  return getSessionToken() && getSessionUserId()
+  return getSessionToken() && getSessionUserId() && getSessionUsername()
 }
 
 /**
@@ -30,6 +34,7 @@ function isLoggedIn() {
  */
 function login(userCredentials) {
   const endpoint = `${backendRoot}/login`
+  const { username } = userCredentials
 
   return new Promise((resolve, reject) => {
     fetch(endpoint, {
@@ -44,6 +49,7 @@ function login(userCredentials) {
         const { token, userId } = data
         setSessionToken(token)
         setSessionUserId(userId)
+        setSessionUsername(username)
 
         resolve()
       })
@@ -56,6 +62,7 @@ function login(userCredentials) {
 function logout() {
   localStorage.removeItem('token')
   localStorage.removeItem('userId')
+  localStorage.removeItem('username')
 }
 
 /**
