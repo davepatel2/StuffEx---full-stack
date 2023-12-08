@@ -17,7 +17,7 @@ function UserWishlist({ backendRoot }) {
     <Item
       itemData={wishlistItems}
       showSearchBar={false}
-      title="Your Wishlist"
+      title="Wishlist"
     />
   )
 }

@@ -17,7 +17,7 @@ function UserBoughtItems({ backendRoot }) {
     <Item
       itemData={boughtItems}
       showSearchBar={false}
-      title="Items You Have Received"
+      title="Received Items"
     />
   )
 }
