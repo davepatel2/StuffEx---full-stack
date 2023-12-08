@@ -1,17 +1,12 @@
-import React from 'react'
 import Logo from '../images/logo.png'
 import User from '../images/profile.png'
 import { Link } from 'react-router-dom'
 import './Navbar.css' // Import the CSS file
-import Authentication from '../authentication/Authentication'
 
 const Navbar = (props) => {
   const restoreItems = () => {
     props.updateItems()
   }
-
-  const isLoggedIn = Authentication.isLoggedIn()
-  // const id = Authentication.getCurrentUser()._id
 
   return (
     <nav className="navbar-style">
@@ -26,15 +21,9 @@ const Navbar = (props) => {
           <Link to="/Form" className="nav-link">
             List an Item
           </Link>
-          {isLoggedIn ? (
-            <Link to={`/Test`}>
-              <img src={User} alt="User" className="user-image" />
-            </Link>
-          ) : (
-            <Link to="/login">
-              <img src={User} alt="User" className="user-image" />
-            </Link>
-          )}
+          <Link to={`/Test`}>
+            <img src={User} alt="User" className="user-image" />
+          </Link>
         </div>
       </div>
     </nav>

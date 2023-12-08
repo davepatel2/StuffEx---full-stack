@@ -26,6 +26,11 @@ function MyApp() {
   function populateItems(query) {
     fetchItems(query)
       .then((res) => res.json())
+      // Reverse order of items
+      .then((json) => json.reverse())
+      // Remove items that are already sold
+      .then((json) => json.filter((item) => !item.buyer_id))
+      // Log the resulting item list for debugging, then save it
       .then((json) => {
         console.log(json)
         setItems(json)
