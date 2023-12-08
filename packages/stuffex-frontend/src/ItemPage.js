@@ -62,7 +62,7 @@ function ItemPage({ backendRoot }) {
   console.log(user)
   // JSX for the component     correct link
   return (
-    <div>
+    <div className= "page" >
       <h1>{item.title}</h1>
       <Link to={`/users/${user._id}`}>{user.username}</Link>
       {
@@ -104,8 +104,8 @@ function ItemPage({ backendRoot }) {
           <img src={noImage} className="image" alt="Nothing Uploaded" />
         )}
       </div>
-      <p>{item.description}</p>
-      <Link to={`/`}>Back to Item List</Link>
+      <div className="desc"><p>{item.description}</p></div>
+      <Link to={`/`} className="back-home">&#60;- Back{' '}</Link>
       {isModalOpen && (
         <div className="modal" onClick={toggleModal}>
           <div className="image-modal">

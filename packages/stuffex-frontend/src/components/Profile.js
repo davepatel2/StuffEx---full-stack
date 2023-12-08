@@ -80,6 +80,7 @@ function Profile(props) {
   // Render the form with input fields and handling errors
   return (
     <form>
+      <label>Sign Up</label>
       <input
         type="credentials"
         name="username"

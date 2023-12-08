@@ -1,4 +1,8 @@
 /* ItemPage.css */
+.page {
+  height: 622px;
+  font-family: 'Inter', sans-serif;
+}
 
 .image-container {
   display: flex;
@@ -8,6 +12,11 @@
   height: 300px;
   overflow: hidden;
   cursor: pointer;
+}
+
+.desc {
+
+  padding: 20px;
 }
 
 .image {
@@ -64,4 +73,22 @@
   font-weight: bold;
   font-size: 12px;
   transition: background-color 0.3s;
+}
+
+.back-home {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: #3b8a6b;
+  border-radius: 3px;
+  padding: 13px;
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.back-home:hover {
+  background: #356652;
 }

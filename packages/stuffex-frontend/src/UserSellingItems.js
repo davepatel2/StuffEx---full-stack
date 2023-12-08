@@ -23,7 +23,7 @@ function UserSellingItems({ backendRoot }) {
     <Item
       itemData={userItems}
       showSearchBar={false}
-      title={`Items ${user.username}'Are Giving Away`}
+      title={`${user.username}'s Listed Items`}
     />
   )
 }

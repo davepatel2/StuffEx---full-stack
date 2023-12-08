@@ -14,9 +14,20 @@ form {
     0 5px 5px 0 rgba(125, 182, 115, 0.24);
 }
 
+form text {
+    display: block;
+    margin: 15px 0 5px;
+    text-align: left;
+}
+
 form label {
+  color: #1E1E1E;
+  font-size: 20px;
+  font-weight: 600;
   display: block;
-  margin: 15px 0 5px;
+  margin-top: 0;
+  margin-left: 43px;
+  margin-bottom: 30px;
   text-align: left;
 }
 
@@ -40,7 +51,7 @@ form input[type='text'] {
 
 form input[type='credentials'],
 [type='password'] {
-  width: 100%;
+  width: 80%;
   padding: 8px;
   margin-bottom: 10px;
   border: none;
@@ -64,12 +75,12 @@ form input[type='file'] {
 form input[type='button'] {
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
-  outline: 0;
+  font-weight: 600;
   background: #3b8a6b;
-  width: 100%;
+  width: 83%;
   border: 0;
   border-radius: 3px;
-  padding: 15px;
+  padding: 13px;
   color: #ffffff;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;

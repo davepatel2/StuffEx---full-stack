@@ -4,15 +4,29 @@
   font-family: 'Inter', sans-serif;
   max-width: 600px;
   height: 622px;
-  margin: 0 auto;
+  margin: 0;
   padding: 20px;
 }
 
+.about-image {
+  position: absolute;
+  top: 83px;
+  right: 0;
+  max-width: 800px; /* Adjust the max-width as needed */
+  height: auto;
+}
+
 .about-style h2 {
-  color: #333;
+  color: #1E1E1E;
+  font-size: 32px;
 }
 
 .about-style p {
-  color: #595959;
+  color: #3b3b3b;
+  font-size: 16px;
   line-height: 1.6;
+}
+
+.about-style strong {
+  font-weight: 700;
 }

@@ -102,9 +102,9 @@ function SearchBar(props) {
         placeholder=" 🔍    Search for anything..."
         onKeyDown={handleKeyDown}
       />
-      <button onClick={restoreItems} className="search-button-clear">
+      <div onClick={restoreItems} className="search-button-clear">
         X
-      </button>
+      </div>
     </div>
   )
 }

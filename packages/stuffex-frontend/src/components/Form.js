@@ -118,7 +118,7 @@ function Form({ handleSubmit }) {
         className={errors.title ? 'input-error' : ''}
       />
 
-      <label htmlFor="images">Image Upload:</label>
+      <text htmlFor="images">Image Upload:</text>
       <input
         type="file"
         name="images"

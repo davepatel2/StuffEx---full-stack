@@ -1,22 +1,26 @@
 /* Footer.css */
 
 .footer-container {
-  /* background-color: #1d594a;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
-    z-index: 10; */
   position: absolute;
   left: 0;
   bottom: auto;
   width: 100%;
   background-color: #1d594a;
   color: white;
+  position: absolute;
+  left: 0;
+  bottom: 1;
+  width: 100%;
+  background-color: #1d594a;
+  color: white;
+}
+
+.footer-image {
+  position: absolute;
+  bottom: 1;
+  left: 0;
+  height: 132px;
+  bottom:auto;
 }
 
 .footer-content {
