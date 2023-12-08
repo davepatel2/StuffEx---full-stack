@@ -64,7 +64,7 @@ function ItemPage({ backendRoot }) {
   return (
     <div className= "page" >
       <h1>{item.title}</h1>
-      <Link to={`/users/${user._id}`}>{user.username}</Link>
+      <Link to={`/users/${user._id}`} className= "user-text">Listed By: {user.username}</Link>
       {
         // if the user is logged in, show a button to add to their wishlist
         Authentication.isLoggedIn() ? (

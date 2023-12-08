@@ -31,11 +31,14 @@ function UserPage(props) {
   // JSX for the component
   return (
     <div className="user-page">
-      <h2>
-        <img src={userImage} className="profile-image" alt="Profile" />
-      </h2>
-      <h2>{user.username}</h2>
-      <p>{}</p>
+      <img src={userImage} className="profile-image" alt="profile" />
+    <h2>{user.username}</h2>
+    <div className="contact-card">
+      <h3>Contact Card</h3>
+      <p>Email: {user.email}</p>
+      <p>Phone: {user.phone}</p>
+    </div>
+    <div className="box-container">
       <div className="box-with-link">
         <Link to={`/users/${userId}/items`}>Previous Listings</Link>
       </div>
@@ -46,6 +49,9 @@ function UserPage(props) {
         <Link to={`/users/${userId}/items_bought`}>Received Items</Link>
       </div>
     </div>
+  </div>
+  
+
   )
 }
 export default UserPage
