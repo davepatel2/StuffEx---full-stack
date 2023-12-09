@@ -15,7 +15,7 @@ Linter: Please follow default configurations of ESLint
 
 # UI Prototype
 
-Check out the [Figma boards](https://www.figma.com/file/Gy5IwCW3syWOpzQZmMxzYT/Untitled?type=design&node-id=0-1&mode=design) for UI prototypes. Note that these have evolved since they were created.
+Check out the [Figma boards](https://www.figma.com/file/Gy5IwCW3syWOpzQZmMxzYT/Untitled?type=design&node-id=0-1&mode=design) for UI prototypes. Last updated: 12-1-23
 
 # Getting Started
 
