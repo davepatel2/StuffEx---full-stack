@@ -44,3 +44,6 @@ Due to issues when setting up CI/CD, this is actually a fork of our original rep
 # Component Test
 
 https://github.com/KeithJLZ/csc307-stuffex/blob/component-test/packages/stuffex-frontend/src/App.test.js
+
+# E2E Test
+https://github.com/KeithJLZ/csc307-stuffex/blob/main/cypress/e2e/stuffex-e2e.cy.js
