@@ -30,3 +30,7 @@ To run the backend, you need to set two environment variables. Set `MONGODB_URI`
 ## Running
 
 To run either the frontend or the backend, run `npm run start -w stuffex-frontend` and/or `npm run start -w express-backend`.
+
+# Sprint Planning, Backlog, and Issues
+
+Due to issues when setting up CI/CD, this is actually a fork of our original repo! Our project board is over there. [Check it out](https://github.com/users/joshuaSmith2021/projects/2/views/1)
