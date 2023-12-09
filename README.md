@@ -1,5 +1,7 @@
 # csc307-stuffex
 
+[Check out our deployment!](https://white-flower-03a4c811e.4.azurestaticapps.net)
+
 # Description
 
 StuffEX is a full-stack application running a React.js frontend and an express backend, using MongoDB for persistant storage. To read about the product vision, check out [our about page](https://white-flower-03a4c811e.4.azurestaticapps.net/About).
