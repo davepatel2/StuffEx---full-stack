@@ -14,11 +14,13 @@ function UserWishlist({ backendRoot }) {
   }, [userId, backendRoot])
 
   return (
+    <div className="page">
     <Item
       itemData={wishlistItems}
       showSearchBar={false}
       title="Wishlist"
     />
+    </div>
   )
 }
 

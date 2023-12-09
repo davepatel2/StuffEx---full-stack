@@ -2,6 +2,7 @@
   height: 622px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .profile-image {

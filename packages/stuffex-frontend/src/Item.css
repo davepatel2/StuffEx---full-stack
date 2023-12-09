@@ -1,4 +1,8 @@
 /* Item.css */
+.page {
+  height: 800px;
+  font-family: 'Inter', sans-serif;
+}
 
 .item-header {
   font-weight: 600;

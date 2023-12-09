@@ -27,9 +27,9 @@ const UserOptions = () => {
 
   return (
     <form>
-      <input type="button" value="Go to Profile" onClick={redirectToProfile} />
+      <input type="button" data-cy="profile-option" value="Go to Profile" onClick={redirectToProfile} />
       <hr />
-      <input type="button" value="Log Out" onClick={handleLogout} />
+      <input type="button" data-cy="logout-option" value="Log Out" onClick={handleLogout} />
     </form>
   )
 }

@@ -1,7 +1,8 @@
 /* ItemPage.css */
 .page {
-  height: 622px;
+  min-height: 622px;
   font-family: 'Inter', sans-serif;
+  overflow: auto;
 }
 
 .image-container {

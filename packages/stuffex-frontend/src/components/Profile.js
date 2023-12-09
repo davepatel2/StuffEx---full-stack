@@ -121,7 +121,7 @@ function Profile(props) {
         className={errors.phone ? 'input-error' : ''}
       />
 
-      <input type="button" value="Create Profile" onClick={createProf} />
+      <input type="button" data-cy="create-profile-button" value="Create Profile" onClick={createProf} />
       <Link to="/login" className="back-button">
         &#60;- Back{' '}
       </Link>

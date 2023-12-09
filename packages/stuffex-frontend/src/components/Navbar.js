@@ -18,10 +18,10 @@ const Navbar = (props) => {
           <Link to="/About" className="nav-link">
             About
           </Link>
-          <Link to="/Form" className="nav-link">
+          <Link to="/Form" data-cy="list" className="nav-link">
             List an Item
           </Link>
-          <Link to={`/UserOptions`}>
+          <Link to={`/UserOptions`} data-cy="options">
             <img src={User} alt="User" className="user-image" />
           </Link>
         </div>
