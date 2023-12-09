@@ -21,7 +21,7 @@ const Navbar = (props) => {
           <Link to="/Form" className="nav-link">
             List an Item
           </Link>
-          <Link to={`/Test`}>
+          <Link to={`/UserOptions`}>
             <img src={User} alt="User" className="user-image" />
           </Link>
         </div>
