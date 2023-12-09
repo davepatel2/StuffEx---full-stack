@@ -41,10 +41,12 @@ To run either the frontend or the backend, run `npm run start -w stuffex-fronten
 
 Due to issues when setting up CI/CD, this is actually a fork of our original repo! Our project board is over there. [Check it out](https://github.com/users/joshuaSmith2021/projects/2/views/1)
 
-# Component Test
+# Tests
+
+## Component Test
 
 https://github.com/KeithJLZ/csc307-stuffex/blob/component-test/packages/stuffex-frontend/src/App.test.js
 
-# E2E Test
+## E2E Test
 
 https://github.com/KeithJLZ/csc307-stuffex/blob/main/cypress/e2e/stuffex-e2e.cy.js
