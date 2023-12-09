@@ -62,9 +62,11 @@ function ItemPage({ backendRoot }) {
   console.log(user)
   // JSX for the component     correct link
   return (
-    <div className= "page" >
+    <div className="page">
       <h1>{item.title}</h1>
-      <Link to={`/users/${user._id}`} className= "user-text">Listed By: {user.username}</Link>
+      <Link to={`/users/${user._id}`} className="user-text">
+        Listed By: {user.username}
+      </Link>
       {
         // if the user is logged in, show a button to add to their wishlist
         Authentication.isLoggedIn() ? (
@@ -104,8 +106,12 @@ function ItemPage({ backendRoot }) {
           <img src={noImage} className="image" alt="Nothing Uploaded" />
         )}
       </div>
-      <div className="desc"><p>{item.description}</p></div>
-      <Link to={`/`} className="back-home">&#60;- Back{' '}</Link>
+      <div className="desc">
+        <p>{item.description}</p>
+      </div>
+      <Link to={`/`} className="back-home">
+        &#60;- Back{' '}
+      </Link>
       {isModalOpen && (
         <div className="modal" onClick={toggleModal}>
           <div className="image-modal">

@@ -59,7 +59,12 @@ function Login() {
         onChange={handleChange}
         placeholder={isTyping.password ? '' : 'Password'}
       />
-      <input type="button" data-cy="login-button" value="Log In" onClick={callLogin} />
+      <input
+        type="button"
+        data-cy="login-button"
+        value="Log In"
+        onClick={callLogin}
+      />
       <p className="create-account-text">
         New User?{' '}
         <Link to="/Profile" className="create-account-link">

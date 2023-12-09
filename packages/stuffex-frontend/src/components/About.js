@@ -10,8 +10,9 @@ const About = () => {
       <p>
         StuffEX is a website for individuals who want to find and get rid of any
         item. It allows people to post items they don't want anymore so others
-        can give them a new home. Our website is strictly for
-        free items. We aren't connecting sellers to buyers but <strong>people to people</strong>.
+        can give them a new home. Our website is strictly for free items. We
+        aren't connecting sellers to buyers but{' '}
+        <strong>people to people</strong>.
       </p>
     </div>
   )

@@ -32,26 +32,24 @@ function UserPage(props) {
   return (
     <div className="user-page">
       <img src={userImage} className="profile-image" alt="profile" />
-    <h2>{user.username}</h2>
-    <div className="contact-card">
-      <h3>Contact Card</h3>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
+      <h2>{user.username}</h2>
+      <div className="contact-card">
+        <h3>Contact Card</h3>
+        <p>Email: {user.email}</p>
+        <p>Phone: {user.phone}</p>
+      </div>
+      <div className="box-container">
+        <div className="box-with-link">
+          <Link to={`/users/${userId}/items`}>Previous Listings</Link>
+        </div>
+        <div className="box-with-link">
+          <Link to={`/users/${userId}/wishlist`}>Wishlist</Link>
+        </div>
+        <div className="box-with-link">
+          <Link to={`/users/${userId}/items_bought`}>Received Items</Link>
+        </div>
+      </div>
     </div>
-    <div className="box-container">
-      <div className="box-with-link">
-        <Link to={`/users/${userId}/items`}>Previous Listings</Link>
-      </div>
-      <div className="box-with-link">
-        <Link to={`/users/${userId}/wishlist`}>Wishlist</Link>
-      </div>
-      <div className="box-with-link">
-        <Link to={`/users/${userId}/items_bought`}>Received Items</Link>
-      </div>
-    </div>
-  </div>
-  
-
   )
 }
 export default UserPage

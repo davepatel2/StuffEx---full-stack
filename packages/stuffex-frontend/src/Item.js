@@ -94,7 +94,7 @@ function SearchBar(props) {
   }
 
   return (
-    <div data-cy="search-button" className="search-bar"> 
+    <div data-cy="search-button" className="search-bar">
       <input
         className="search-input"
         type="text"

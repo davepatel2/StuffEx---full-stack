@@ -25,11 +25,10 @@
 .user-text:hover {
   font-size: large;
   font-weight: 500;
-  color:#3b8a6b
+  color: #3b8a6b;
 }
 
 .desc {
-
   padding: 20px;
 }
 

@@ -15,11 +15,11 @@ function UserBoughtItems({ backendRoot }) {
 
   return (
     <div className="page">
-    <Item
-      itemData={boughtItems}
-      showSearchBar={false}
-      title="Received Items"
-    />
+      <Item
+        itemData={boughtItems}
+        showSearchBar={false}
+        title="Received Items"
+      />
     </div>
   )
 }

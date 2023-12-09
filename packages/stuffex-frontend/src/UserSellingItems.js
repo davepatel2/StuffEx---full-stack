@@ -21,11 +21,11 @@ function UserSellingItems({ backendRoot }) {
 
   return (
     <div className="page">
-    <Item
-      itemData={userItems}
-      showSearchBar={false}
-      title={`${user.username}'s Listed Items`}
-    />
+      <Item
+        itemData={userItems}
+        showSearchBar={false}
+        title={`${user.username}'s Listed Items`}
+      />
     </div>
   )
 }
