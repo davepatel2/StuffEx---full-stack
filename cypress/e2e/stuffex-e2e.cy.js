@@ -2,6 +2,7 @@
  * checks routing works correctly on UI and pages appear as expected
  * assume this user is just visiting site to find items, not post
  */
+/// <reference types="cypress" />
 
 describe('End-to-End Test', () => {
   beforeEach(() => {
