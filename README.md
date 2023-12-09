@@ -17,6 +17,10 @@ Linter: Please follow default configurations of ESLint
 
 Check out the [Figma boards](https://www.figma.com/file/Gy5IwCW3syWOpzQZmMxzYT/Untitled?type=design&node-id=0-1&mode=design) for UI prototypes. Last updated: 12-1-23
 
+# Class Diagram
+
+Here is our original [UML Diagram!] (https://github.com/KeithJLZ/csc307-stuffex/blob/main/diagram.md)
+
 # Getting Started
 
 After cloning the repository, navigate to the project root and run `npm install`.
