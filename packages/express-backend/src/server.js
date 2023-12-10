@@ -27,9 +27,6 @@ app.get('/users', async (req, res) => {
 })
 
 app.post('/users', async (req, res) => {
-  const user = req.body
-  user['hashed_password'] = await Passwords.hashPassword(req.body.password)
-
   const createdUser = await Database.createUser(req.body)
 
   const statusCode = createdUser === undefined ? 400 : 201
