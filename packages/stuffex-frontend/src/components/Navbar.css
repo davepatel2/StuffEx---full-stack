@@ -1,0 +1,59 @@
+/* Navbar styles */
+.navbar-style {
+  background-color: #1d594a;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* Navbar content styles */
+.navbar-content-style {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo image styles */
+.logo-image {
+  height: 60px;
+}
+
+/* Navigation link styles */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin: 0 15px; /* Adjust the margin as needed */
+  text-decoration: none;
+  color: white; /* Set the color as needed */
+  position: relative;
+  font-size: 18px;
+}
+
+.nav-link:before {
+  content: '';
+  position: absolute;
+  width: 7px; /* Adjust the width of the circle as needed */
+  height: 7px; /* Adjust the height of the circle as needed */
+  background-color: white;
+  border-radius: 50%;
+  bottom: -15px; /* Adjust the distance from the text */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.nav-link:hover:before {
+  opacity: 1;
+}
+
+/* User image styles */
+.user-image {
+  margin: 0 15px;
+  height: 50px;
+}

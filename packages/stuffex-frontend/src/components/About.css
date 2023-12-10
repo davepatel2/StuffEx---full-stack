@@ -1,0 +1,32 @@
+/* About.css */
+
+.about-style {
+  font-family: 'Inter', sans-serif;
+  max-width: 600px;
+  height: 622px;
+  margin: 0;
+  padding: 20px;
+}
+
+.about-image {
+  position: absolute;
+  top: 83px;
+  right: 0;
+  max-width: 800px; /* Adjust the max-width as needed */
+  height: auto;
+}
+
+.about-style h2 {
+  color: #1e1e1e;
+  font-size: 32px;
+}
+
+.about-style p {
+  color: #3b3b3b;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-style strong {
+  font-weight: 700;
+}

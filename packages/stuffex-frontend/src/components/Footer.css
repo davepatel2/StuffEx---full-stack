@@ -1,0 +1,32 @@
+/* Footer.css */
+
+.footer-container {
+  position: absolute;
+  left: 0;
+  bottom: auto;
+  width: 100%;
+  background-color: #1d594a;
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 1;
+  width: 100%;
+  background-color: #1d594a;
+  color: white;
+}
+
+.footer-image {
+  position: absolute;
+  bottom: 1;
+  left: 0;
+  height: 132px;
+  bottom: auto;
+}
+
+.footer-content {
+  padding: 40px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  font-weight: 400;
+}

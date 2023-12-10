@@ -1,28 +1,30 @@
-import React from 'react'
 import Logo from '../images/logo.png'
+import User from '../images/profile.png'
+import { Link } from 'react-router-dom'
+import './Navbar.css' // Import the CSS file
 
-const Navbar = () => {
-  const navbarStyle = {
-    borderBottom: '2px solid #149562',
-  }
-
-  const navbarContentStyle = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '10px 20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+const Navbar = (props) => {
+  const restoreItems = () => {
+    props.updateItems()
   }
 
   return (
-    <nav style={navbarStyle}>
-      <div style={navbarContentStyle}>
-        <a href="/">
-          <img src={Logo} alt="Logo" style={{ height: 60 }} />
-        </a>
-        <a href="/about">About</a>
-        <a href="/Form">List an Item</a>
+    <nav className="navbar-style">
+      <div className="navbar-content-style">
+        <Link to="/" onClick={restoreItems}>
+          <img src={Logo} alt="Logo" className="logo-image" />
+        </Link>
+        <div className="nav-links">
+          <Link to="/About" className="nav-link">
+            About
+          </Link>
+          <Link to="/Form" data-cy="list" className="nav-link">
+            List an Item
+          </Link>
+          <Link to={`/UserOptions`} data-cy="options">
+            <img src={User} alt="User" className="user-image" />
+          </Link>
+        </div>
       </div>
     </nav>
   )
